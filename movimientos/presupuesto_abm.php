@@ -1,5 +1,4 @@
 <?php
-
 require('../clases/conexion.php');
 include '../sesiones.php';
 //insertar registros
@@ -8,7 +7,7 @@ if (!empty($_POST['agregar'])) {
     if (mysqli_num_rows($consulta) > 0) {
         $consucabe = db_query("select * from presupuesto where pre_estado='PENDIENTE' and usu_id=$idUsu");
         $ID = mysqli_fetch_array($consucabe);
-//        echo $ID[0];
+        echo $ID[0];
         $txtid = $_POST['txtid'];
         $txtcant = $_POST['txtcantidad'];
         $txtprecio = $_POST['txtprecio'];
@@ -27,15 +26,18 @@ if (!empty($_POST['agregar'])) {
                 $exenta = $txtprecio * $txtcant;
                 break;
         }
-        $detalle = db_query("call compras.sp_detpresu($ID[0],$txtid, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
+        $detalle = db_query("call compras_marce.sp_detpresu($ID[0],$txtid,$txtcant,$txtprecio,$gravadas5,$gravadas10,$exenta)");
 
         if ($detalle) {
             echo "<script>location.href='presupuesto_agregar.php'</script>";
         }
     } else {
         $fecha = date('Y-m-d');
+        $pedido = $_POST['txtidpedido'];
+        $proveedor = $_POST['txtidproveedor'];
+        $sucursales = $_POST['txtidsucursal'];
         //insertar cabecera 
-        $cabecera = db_query(" call sp_presu('$fecha','PENDIENTE',0,'$_POST[txtidproveedor]','$_POST[txtidpedido]','$_POST[txtidsucursal]','$idUsu')");
+        $cabecera = db_query("call compras_marce.sp_presu('$fecha','PENDIENTE',0,$proveedor,$pedido,$sucursales,$idUsu)");
         //consultar cabecera
         $consucabe = db_query("select * from presupuesto where pre_estado='PENDIENTE' and usu_id=$idUsu");
         $ID = mysqli_fetch_array($consucabe);
@@ -58,8 +60,8 @@ if (!empty($_POST['agregar'])) {
                 break;
         }
         //insertar detalle
-        $detalle = db_query("call compras.sp_detpresu($ID[0],$txtid, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
-        $total = db_query("SELECT sum(det_precio*det_cant) as total FROM compras.det_presupuesto where pre_id=$ID[0]");
+        $detalle = db_query("call compras_marce.sp_detpresu($ID[0],$txtid, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
+        $total = db_query("SELECT sum(det_precio*det_cant) as total FROM det_presupuesto where pre_id=$ID[0]");
         while ($row = mysqli_fetch_array($total)) {
 //        $row = mysqli_fetch_array($total);
             db_query("update presupuesto set pre_monto=$row[0] where pre_id=$ID[0]");
@@ -80,7 +82,7 @@ if (!empty($_GET['delete'])) {
 //        $row = mysqli_fetch_array($total);
         db_query("update presupuesto set pre_monto=pre_monto-$row[0] where pre_id=$v2");
     }
-        $eliminar = db_query("DELETE FROM det_presupuesto WHERE mat_id= $v1");
+    $eliminar = db_query("DELETE FROM det_presupuesto WHERE mat_id= $v1");
     if ($eliminar) {
         echo "<script>location.href='presupuesto_agregar.php'</script>";
     }
@@ -106,8 +108,4 @@ if (!empty($_GET['borrar'])) {
         echo "<script>location.href='presupuestolistado.php'</script>";
     }
 }
-				
-				
-				
-				
-				
+

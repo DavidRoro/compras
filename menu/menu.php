@@ -63,7 +63,7 @@ mysqli_query($con, $sql);
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background: green;" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background: gray;" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -133,7 +133,7 @@ mysqli_query($con, $sql);
                                     Clasificación</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/materiaprimalistado.php">
                                     <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
-                                    Materia Prima</a>
+                                    Productos</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/sucursalistado.php">
                                     <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
                                     Sucursal</a>

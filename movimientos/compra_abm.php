@@ -32,19 +32,20 @@ if (!empty($_POST['agregar'])) {
                 $monto = $exenta;
                 break;
         }
-        $detalle = db_query("call compras.sp_detcompra($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
+        $detalle = db_query("call sp_detcompra($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
        // $consultalibro = db_query("SELECT * FROM libro_compra where lib_id= com_id=$ID[0]");
         $librocompras = db_query("call sp_librocompra($ID[0],$txtidsuc,$gravadas5,$gravadas10,$exenta,$monto,'GENERADO')");
-        $total = db_query("SELECT sum(det_precio*det_cant) as total FROM compras.det_compra where com_id=$ID[0]");
-        while ($row = mysqli_fetch_array($total)) {
-//        $row = mysqli_fetch_array($total);
-            db_query("update compra set com_monto=$row[0] where com_id=$ID[0]");
-        }
+//        $total = db_query("SELECT sum(det_precio*det_cant) as total FROM compras.det_compra where com_id=$ID[0]");
+//        while ($row = mysqli_fetch_array($total)) {
+////        $row = mysqli_fetch_array($total);
+//            db_query("update compra set com_monto=$row[0] where com_id=$ID[0]");
+//        }
         if ($detalle) {
             echo "<script>location.href='compra_agregar.php'</script>";
         }
     } else {
         $fecha = date('Y-m-d');
+        
         //insertar cabecera 
         $cabecera = db_query(" call sp_compra('$_POST[txtidsucursal]','$fecha','$_POST[txtfact]','$_POST[cmbtipofact]','$_POST[txtcuotas]','$_POST[txtintervalo]','PENDIENTE',0,'$_POST[txtidorden]','$_POST[txtidproveedor]','$idUsu')");
 
@@ -76,7 +77,7 @@ if (!empty($_POST['agregar'])) {
         }
 
         //insertar detalle
-        $detalle = db_query("call compras.sp_detcompra($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
+        $detalle = db_query("call sp_detcompra($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
         $librocompras = db_query("call sp_librocompra($ID[0],$txtidsuc,$gravadas5,$gravadas10,$exenta,$monto,'GENERADO')");
         $total = db_query("SELECT sum(det_precio*det_cant) as total FROM compras.det_compra where com_id=$ID[0]");
         while ($row = mysqli_fetch_array($total)) {
@@ -126,8 +127,3 @@ if (!empty($_GET['borrar'])) {
         echo "<script>location.href='compralistado.php'</script>";
     }
 }
-				
-				
-				
-				
-				

@@ -60,7 +60,7 @@ and open the template in the editor.
         $datos = select_datos("vs_matprima", "mat_id");
         ?>
         <div class="container">
-            <h2>Listado Materia Prima</h2>
+            <h2>Listado Productos</h2>
             <br>
             <!--<div class="row">-->
             <form action="#" method="POST" role="form">
@@ -133,7 +133,7 @@ and open the template in the editor.
             
             <div class="card shadow mb-4">
                     <div class="card-header py-3 bg-success">
-                        <h6 class="m-0 font-weight-bold text-white">Listado Clasificacion</h6>
+                        <h6 class="m-0 font-weight-bold text-white">Listado Productos</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

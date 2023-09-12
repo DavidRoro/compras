@@ -50,47 +50,7 @@ if (mysqli_num_rows($consulta) > 0) {
         <!--<script src="../js/buscador_proveedor.js"></script>-->
         <link href="../select2/select2.min.css" rel="stylesheet">
         <script src="../select2/select2.full.min.js"></script>
-        <style>
 
-            /*            ul{
-                            list-style-type: none;
-                                            margin: 0;
-                                            padding: 0;
-            
-                            overflow: hidden;
-                            background-color: lightblue;
-                            cursor: pointer;
-                            border-radius: 0 10px 0 10px;
-                            padding: 0 5px 0 5px;
-                            width: 10%;
-            
-                        }
-                        li {
-                            float: left;
-                        }
-            
-                        li a {
-                            display: block;
-                            color: white;
-                            text-align: center;
-                            padding: 10px 10px;
-                            text-decoration: none;
-                        }
-            
-                        li a:hover:not(.active) {
-                            display: block;
-                            color: white;
-                            text-align: center;
-                            padding: 10px 10px;
-                            text-decoration: none;
-            
-                        }
-            
-                        .active {
-                            background-color: #4CAF50;
-                        }*/
-
-        </style>
         <script>
             function AbrirCentrado(Url, NombreVentana, width, height, extras) {
                 var largo = width;
@@ -121,7 +81,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form action="presupuesto_abm.php" enctype="multipart/form-data" method="POST" role="form">
+                <form action="./presupuesto_abm.php" enctype="multipart/form-data" method="POST" role="form">
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-1 text-gray-800">DATOS DE PEDIDO</h1>-->
                     <!--<p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>-->
@@ -222,7 +182,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                                                 <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" required="">
                                                 <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
-                                                <?php // $valueped=$_POST['txtidpedido']; ?>
+                                            
                                                 <a href="javascript:AbrirCentrado('../buscadores/buscar_ped.php?vcod=<?php echo $ped ?>','articulo','850','350','');">
                                                     <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
                                                 </a>
@@ -275,19 +235,19 @@ if (mysqli_num_rows($consulta) > 0) {
                                                     <tbody>
                                                         <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                             <tr>
-                                                                <td><div align="center"><a href="presupuesto_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
-                                                                <!--<td><div align="center"><?php //echo $mostrardatos[1]          ?></div></td>-->
-                                                                <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
-                                                                <td><div align="center"><?php echo $mostrardatos[3] ?></div></td> 
-                                                                <td><div align="center"><?php echo number_format($mostrardatos[4], 0, ',', '.') ?></div></td> 
-                                                                <td><div align="center"><?php echo $mostrardatos[5] ?></div></td> 
-                                                                <?php $iva5 += $mostrardatos[5] ?>
-                                                                <td><div align="center"><?php echo $mostrardatos[6] ?></div></td> 
-                                                                <?php $iva10 += $mostrardatos[6] ?>
-                                                                <td><div align="center"><?php echo $mostrardatos[7] ?></div></td> 
-                                                                <?php $exenta += $mostrardatos[7] ?>
-                                                                <td><div align="center"><?php echo number_format($mostrardatos[8], 0, ',', '.') ?></div></td>
-                                                                <?php $sumar += $mostrardatos[8] ?>
+                                                                <td><div align="center"><a href="presupuesto_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]"; ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                             
+                                                                <td><div align="center"><?php echo $mostrardatos[2]; ?></div></td>
+                                                                <td><div align="center"><?php echo $mostrardatos[3]; ?></div></td> 
+                                                                <td><div align="center"><?php echo number_format($mostrardatos[4], 0, ',', '.'); ?></div></td> 
+                                                                <td><div align="center"><?php echo $mostrardatos[5]; ?></div></td> 
+                                                                <?php $iva5 += $mostrardatos[5]; ?>
+                                                                <td><div align="center"><?php echo $mostrardatos[6]; ?></div></td> 
+                                                                <?php $iva10 += $mostrardatos[6]; ?>
+                                                                <td><div align="center"><?php echo $mostrardatos[7]; ?></div></td> 
+                                                                <?php $exenta += $mostrardatos[7]; ?>
+                                                                <td><div align="center"><?php echo number_format($mostrardatos[8], 0, ',', '.'); ?></div></td>
+                                                                <?php $sumar += $mostrardatos[8]; ?>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -317,7 +277,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                         <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'presupuesto_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
                                         <!--<button type="submit" name="agregar" id="btn-submit" class="btn btn-success"><span class="fa fa-check"></span> REGISTRAR</button>--> 
                                         <!--<input type="submit" name="agregar" id="btn-submit" class="btn btn-success glyphicon glyphicon-check" value="REGISTRAR">-->
-                                        <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"><span class="fa fa-check"></span> REGISTRAR</button>
+                                        <div align="right"><button type="submit" name="agregar" value="agregar" id="AgregaProductoVentas" class="btn btn-success"><span class="fa fa-check"></span> REGISTRAR</button>
                                         </div>
                                         </form>
                                     </div>
@@ -339,7 +299,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                 </div>
                                 <div class="modal-body">
                                     <span class="fa fa-check">OK</span>
-                                    <a class="btn btn-info" href="pedido_agregar.php">ACEPTAR</a>
+                                    <a class="btn btn-info" href="presupuesto_agregar.php">ACEPTAR</a>
                                 </div>
                             </div>
                         </div>
