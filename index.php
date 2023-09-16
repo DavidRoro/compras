@@ -19,7 +19,7 @@ and open the template in the editor.
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
         <style>
             body{
-            	background: lightgreen;
+            	background: cornflowerblue;
                 padding-top: 40px;
                 padding-bottom: 40px;
             }
@@ -62,7 +62,7 @@ and open the template in the editor.
                     <input type="password" class="form-control" name="clave" required=""  placeholder="Ingrese su contraseña"/>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <button class="btn btn-lg btn-success btn-block" type="submit">
+                <button class="btn btn-lg btn-info btn-block" type="submit">
                     Inicie Sesión
                 </button>
                 <?php if (!empty($_SESSION['error'])) {?>

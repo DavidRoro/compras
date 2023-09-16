@@ -40,11 +40,11 @@
 
                 <!-- Page Heading -->
                 <h1 align="center" class="h3 mb-2 text-gray-800">Listado Compra</h1>
-                <p align="center"><a href="../movimientos/compra_agregar.php" class="btn btn-success">Nuevo Registro</a></p>
+                <p align="center"><a href="../movimientos/compra_agregar.php" class="btn btn-info">Nuevo Registro</a></p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3 bg-success">
+                    <div class="card-header py-3 bg-info">
                         <h6 class="m-0 font-weight-bold text-white">Listado Compra</h6>
                     </div>
                     <div class="card-body">

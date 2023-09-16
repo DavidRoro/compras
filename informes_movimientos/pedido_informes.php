@@ -43,14 +43,14 @@ while ($row = mysqli_fetch_array($resultado)) {
     $pdf->SetFont('Arial', 'B', 10);
     $pdf->setY(30);
     $pdf->setX(135);
-    $pdf->Cell(5, $textypos, "RUC: 80005145-9");
+    $pdf->Cell(5, $textypos, "RUC: 2465084-6");
     $pdf->SetFont('Arial', '', 10);
     $pdf->setY(35);
     $pdf->setX(135);
-    $pdf->Cell(5, $textypos, "Dr Vasconsellos N 227, c/ Via Ferrea");
+    $pdf->Cell(5, $textypos, "Tte. Rojas Silva c/acceso sur");
     $pdf->setY(40);
     $pdf->setX(135);
-    $pdf->Cell(5, $textypos, "Tel: 021-294-380");
+    $pdf->Cell(5, $textypos, "Tel: 0981190954");
     $pdf->setY(45);
     $pdf->setX(135);
     $pdf->Cell(5, $textypos, "ASUNCION- PARAGUAY");
@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_array($resultado)) {
     $resultado2 = db_query("SELECT * FROM vs_detpedido where ped_id=$row[0]")or die(mysqli_error());
 
 //// Array de Cabecera
-    $header = array("ITEM", "MATERIAL", "CANTIDAD");
+    $header = array("ITEM", "PRODUCTO", "CANTIDAD");
 // Column widths
     $w = array(20, 95, 20);
 // Header

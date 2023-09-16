@@ -90,7 +90,7 @@ and open the template in the editor.
                         <div class="col-lg-5">
 
                             <div class="card position-relative">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> INFORMES COMPRAS</h6>
                                 </div>
                                 <div class="card-body center-block">
@@ -160,7 +160,7 @@ and open the template in the editor.
                                             <i class="fa fa-print"></i> Listar
                                             </button>      
                                             --> 
-                                            <input type="submit" name="informe" class="btn btn-success" value="IMPRIMIR" />
+                                            <input type="submit" name="informe" class="btn btn-info" value="IMPRIMIR" />
 
                                         </div>  
                                     </div>

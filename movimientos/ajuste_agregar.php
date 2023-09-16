@@ -107,7 +107,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-4">
 
                             <div class="card position-relative">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE AJUSTE STOCK</h6>
                                 </div>
                                 <div class="card-body">
@@ -149,7 +149,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-8">
 
                             <div class="card position-relative ">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE AJUSTE STOCK</h6>
                                 </div>
                                 <div class="card-body">
@@ -166,7 +166,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Materia Prima:</span></label>
+                                                <label><span><i class=""></i>Productos:</span></label>
 
                                                 <input type="text" name="txtmateriaprima" placeholder="Busque por descripcion" id="descripcion" class="form-control" required="">    
                                             </div>
@@ -217,7 +217,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                                         <tr>
                                                             <th><div align="center">Acción</div></th>
                                                             <th><div align="center">Codigo</div></th>
-                                                            <th><div align="center">Materia Prima</div></th>
+                                                            <th><div align="center">Productos</div></th>
                                                             <th><div align="center">Cantidad</div></th>
                                                             <th><div align="center">Motivo</div></th>
 

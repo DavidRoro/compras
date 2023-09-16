@@ -31,7 +31,7 @@ and open the template in the editor.
 //                                
                                 break;
                             case 2:
-                                header("location:mat_prima.php");
+                                header("location:productos.php");
                                 break;
                             case 3:
                                 header("location:sucur.php");
@@ -73,7 +73,7 @@ and open the template in the editor.
                         <div class="col-lg-5">
 
                             <div class="card position-relative">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> INFORMES REFERENCIALES</h6>
                                 </div>
                                 <div class="card-body center-block">
@@ -91,7 +91,7 @@ and open the template in the editor.
                                     <select class="form-control" id="ref" name="ref">
                                         <option value="">SELECCIONE UNA OPCION:</option>
                                         <option value="1">CLASIFICACION</option>
-                                        <option value="2">MATERIA PRIMA</option>
+                                        <option value="2">PRODUCTOS</option>
                                         <option value="3">SUCURSAL</option>
                                         <option value="4">MOTIVO AJUSTE</option>
                                         <option value="5">PERSONAL</option>
@@ -108,7 +108,7 @@ and open the template in the editor.
                                                                                             <i class="fa fa-print"></i> Listar
                                                                                         </button>      
                                             --> 
-                                    <input type="submit" name="va" class="btn btn-success" value="IMPRIMIR" />
+                                    <input type="submit" name="va" class="btn btn-info" value="IMPRIMIR" />
 
                                         </div>  
                                     </div>

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_abm.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/clases/conexion.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/presupuesto_abm.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/ordencompra_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremision_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/index.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedido_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/clases/cabecera.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedidolistado.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedido_agregar.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/presupuesto_agregar.php</file>
         </group>

@@ -98,7 +98,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-4">
 
                             <div class="card position-relative">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE ORDEN COMPRA</h6>
                                 </div>
                                 <div class="card-body">
@@ -164,7 +164,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-8">
 
                             <div class="card position-relative ">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE ORDEN COMPRA</h6>
                                 </div>
                                 <div class="card-body">
@@ -185,7 +185,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Materia Prima:</span></label>
+                                                <label><span><i class=""></i>Productos:</span></label>
 
                                                 <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" readonly="">
                                                 <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>

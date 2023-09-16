@@ -113,7 +113,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-4">
 
                             <div class="card position-relative">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE COMPRA</h6>
                                 </div>
                                 <div class="card-body">
@@ -171,7 +171,7 @@ if (mysqli_num_rows($consulta) > 0) {
                         <div class="col-lg-8">
 
                             <div class="card position-relative ">
-                                <div class="card-header py-3 bg-success">
+                                <div class="card-header py-3 bg-info">
                                     <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE COMPRA</h6>
                                 </div>
                                 <div class="card-body">

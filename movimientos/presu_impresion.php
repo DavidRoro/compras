@@ -30,7 +30,7 @@ $pdf->setY(12);
 $pdf->setX(10);
 // Agregamos los datos de la empresa
 $pdf->Image('../Imagenes/images.png', 2, 5, 10);
-$pdf->Cell(5, $textypos, "  WAL METALURGICA");
+$pdf->Cell(5, $textypos, "  BEBIDAS AL PASO");
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->setY(30);
 $pdf->setX(10);
@@ -38,13 +38,13 @@ $pdf->Cell(5, $textypos, "DE:");
 $pdf->SetFont('Arial', '', 10);
 $pdf->setY(35);
 $pdf->setX(10);
-$pdf->Cell(5, $textypos, "FIORELLA MORESCHI");
+$pdf->Cell(5, $textypos, "");
 $pdf->setY(40);
 $pdf->setX(10);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->setY(30);
 $pdf->setX(135);
-$pdf->Cell(5, $textypos, "RUC: 80005145-9");
+$pdf->Cell(5, $textypos, "RUC: 2465084-6");
 $pdf->SetFont('Arial', '', 10);
 $pdf->setY(35);
 $pdf->setX(135);
@@ -92,7 +92,7 @@ $pdf->setX(135);
 $pdf->Ln(15);
 /////////////////////////////
 //// Array de Cabecera
-$header = array("CANTIDAD", "MATERIAL", "PRECIO U.", "EXENTA", "IVA 5%", "IVA10%");
+$header = array("CANTIDAD", "PRODUCTO", "PRECIO U.", "EXENTA", "IVA 5%", "IVA10%");
 // Column widths
 $w = array(20, 95, 20, 20, 20, 20);
 // Header

@@ -63,14 +63,14 @@ mysqli_query($con, $sql);
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background: gray;" id="accordionSidebar">
+            <ul class="navbar-nav sidebar sidebar-dark accordion" style="background: cornflowerblue;" id="accordionSidebar">
 
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                     <div class="sidebar-brand-icon rotate-n-15">
-                        <i class=""><img src="../Imagenes/carrito.png" width="24" height="24"></i>
+<!--                        <i class=""><img src="../Imagenes/carrito.png" width="24" height="24"></i>-->
                     </div>
-                    <div class="sidebar-brand-text mx-3">SISTEMA DE COMPRAS</div>
+                    <div class="sidebar-brand-text mx-3">SISTEMA AL PASO</div>
                 </a>
 
                 <!-- Divider -->
@@ -79,7 +79,7 @@ mysqli_query($con, $sql);
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
                     <a class="nav-link" href="../menu/menu.php">
-                        <i><img src="../Imagenes/lista.png" width="24" height="24"></i>
+<!--                        <i><img src="../Imagenes/lista.png" width="24" height="24"></i>-->
                         <span>Inicio</span></a>
                 </li>
 
@@ -89,31 +89,38 @@ mysqli_query($con, $sql);
                 <!-- Heading -->
                 <?php if ($rol == 'ADMINISTRADOR') { ?>
                     <div class="sidebar-heading">
-                        Mantenimiento y seguridad
+                        Referencial General
                     </div>
 
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                             <i class="fas fa-fw fa-cog"></i>
-                            <span>Mantenimiento General</span>
+                            <span>Referenciales Compras</span>
                         </a>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" target="myFrame" href="../referenciales/personalistado.php">
-                                    <img src="../Imagenes/Usuario-especialista.png" width="24" height="24"> Personal</a>
+                                    Personal</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/proveedorlistado.php">
-                                    <img src="../Imagenes/prov.png" width="24" height="24">
+                                    
                                     Proveedor</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/vehiculolistado.php">
-                                    <img src="../Imagenes/prov.png" width="24" height="24">
+                                    
                                     Vehiculo
 
                                 </a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/usuariolistado.php">
-                                    <img src="../Imagenes/usuario.png" width="24" height="24">
-                                    Usuario</a>
+                                                                        Usuario</a>
+                                <a class="collapse-item" target="myFrame" href="../referenciales/materiaprimalistado.php">
+                                                                        Productos</a>
+                                <a class="collapse-item" target="myFrame" href="../referenciales/sucursalistado.php">
+                                    
+                                    Sucursal</a>
+                                <a class="collapse-item" target="myFrame" href="../referenciales/motivolistado.php">
+                                    	
+                                    Motivo Ajuste</a>
                             </div>
                         </div>
                     </li>
@@ -123,7 +130,7 @@ mysqli_query($con, $sql);
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                             <i class="fas fa-fw fa-wrench"></i>
-                            <span>Mantenimiento Stock</span>
+                            <span>Referenciales Ventas</span>
                         </a>
                         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -131,15 +138,7 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../referenciales/clasificacionlistado.php">
                                     <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
                                     Clasificación</a>
-                                <a class="collapse-item" target="myFrame" href="../referenciales/materiaprimalistado.php">
-                                    <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
-                                    Productos</a>
-                                <a class="collapse-item" target="myFrame" href="../referenciales/sucursalistado.php">
-                                    <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
-                                    Sucursal</a>
-                                <a class="collapse-item" target="myFrame" href="../referenciales/motivolistado.php">
-                                    <img src="../Imagenes/flecha-derecha.png" width="16" height="16">	
-                                    Motivo Ajuste</a>
+                                
                             </div>
                         </div>
                     </li>
@@ -148,28 +147,35 @@ mysqli_query($con, $sql);
                     <hr class="sidebar-divider">
 
                     <!-- Heading -->
-                    <div class="sidebar-heading">
-                        Gestion de Compras
-                    </div>
+                   
 
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsed" aria-expanded="true" aria-controls="collapsed">
                             <i class="fas fa-fw fa-archive"></i>
-                            <span>Documentos internos</span>
+                            <span>Gestionar Compras</span>
                         </a>
                         <div id="collapsed" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" target="myFrame" href="../movimientos/pedidolistado.php">
-                                    <img src="../Imagenes/pedido.png" width="24" height="24">
+                                    
                                     Pedido</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/presupuestolistado.php">
-                                    <img src="../Imagenes/presupuesto.png" width="24" height="24">
+                                    
                                     Presupuesto</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/ordencompralistado.php">
-                                    <img src="../Imagenes/ordencompra.png" width="24" height="24">
-                                    Orden de Compra</a>
+                                                                        Orden de Compra</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/compralistado.php">
+                                   
+                                    Factura</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/notacreditolistado.php">
+                                                                        Nota de Credito-Debito</a>
+                                <a class="collapse-item" href="../movimientos/ajustelistado.php" target="myFrame">
+                                                                        Ajuste de Stock</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionlistado.php">
+                                    
+                                    Nota de Remision</a>
                             </div>
                         </div>
 
@@ -179,7 +185,7 @@ mysqli_query($con, $sql);
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
                             <i class="fas fa-fw fa-archive"></i>
-                            <span>Comprobantes Compra</span>
+                            <span>Gestionar Ventas</span>
                         </a>
                         <div id="collapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
@@ -198,17 +204,17 @@ mysqli_query($con, $sql);
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#uno" aria-expanded="true" aria-controls="uno">
                             <i class="fas fa-fw fa-archive"></i>
-                            <span>Control Interno de Stock</span>
+                            <span>Gestionar Tesoreria</span>
                         </a>
                         <div id="uno" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" href="../movimientos/ajustelistado.php" target="myFrame">
-                                    <img src="../Imagenes/onebit_21.png" width="24" height="24">
-                                    Ajuste de Stock</a>
+                                    
+                                    Asignar Fondo Fijo</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionlistado.php">
-                                    <img src="../Imagenes/documento.png" width="24" height="24">
-                                    Nota de Remision</a>
+                                    
+                                    Conciliación</a>
                             </div>
                         </div>
 

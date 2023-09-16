@@ -11,7 +11,7 @@
                 $this->Image('../Imagenes/documento.png', 30, 5, 15);
                 $this->SetFont('Arial', 'B', 20);
                 $this->Cell(30);
-                $this->Cell(120, 10, 'Reporte de Materia Prima', 0, 0, 'C');
+                $this->Cell(120, 10, 'Reporte de Productos', 0, 0, 'C');
                 $this->Ln(20);
             }
 
