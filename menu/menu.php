@@ -670,7 +670,7 @@ mysqli_query($con, $sql);
                               Settings
                             </a>
                             -->                          
-                            <a class="dropdown-item" href="../ayudas/Ayuda_labcompras.htm">
+                            <a class="dropdown-item" href="../ayuda/Ayuda_labcompras.htm">
 
 
                                 <i class="fas fa-help-me fa-sm fa-fw mr-2 text-gray-400">
