@@ -142,6 +142,28 @@ mysqli_query($con, $sql);
                             </div>
                         </div>
                     </li>
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Referenciales Tesorería</span>
+                        </a>
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+
+                                <a class="collapse-item" target="myFrame" href="../referenciales/cuentabancaria_listado.php">
+                                    <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
+                                    Cuenta Bancaria</a>
+                                
+                            </div>
+                        </div>
+                    </li>
+                    
+                    
+                    
+                    
+                    
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -190,9 +212,9 @@ mysqli_query($con, $sql);
                         <div id="collapse" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
 
-                                <a class="collapse-item" target="myFrame" href="../movimientos/compralistado.php">
-                                    <img src="../Imagenes/orden.png" width="24" height="24">
-                                    Factura</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/apertura_agregar.php">
+                                   
+                                    Apertura Y Cierre de Caja</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notacreditolistado.php">
                                     <img src="../Imagenes/documento.png" width="16" height="16">
                                     Nota de Credito-Debito</a>
@@ -208,13 +230,43 @@ mysqli_query($con, $sql);
                         </a>
                         <div id="uno" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
+                                
+                                <a class="collapse-item" href="../movimientos/pagofactura_listado.php" target="myFrame">
+                                    
+                                    Pagos de Facturas</a>
+                                
+                                <a class="collapse-item" href="../movimientos/ordendepago.php" target="myFrame">
+                                    
+                                    Orden de Pago</a>
+                                
+                                <a class="collapse-item" href="../movimientos/registrocheque.php" target="myFrame">
+                                    
+                                    Registro de Cheques</a>
 
-                                <a class="collapse-item" href="../movimientos/ajustelistado.php" target="myFrame">
+                                <a class="collapse-item" target="myFrame" href="../movimientos/asignar.php">
                                     
                                     Asignar Fondo Fijo</a>
-                                <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionlistado.php">
+                                <a class="collapse-item" target="myFrame" href="../movimientos/rendicion_agregar.php">
+                                    
+                                    Rendición de Gastos</a>
+                                
+                                <a class="collapse-item" target="myFrame" href="../movimientos/reposicion.php">
+                                    
+                                    Reposicion</a>
+                                
+                                <a class="collapse-item" target="myFrame" href="../movimientos/depositobancario_agregar.php">
+                                    
+                                    Deposito Bancario</a>
+                                
+                                <a class="collapse-item" href="../movimientos/debitoscreditos_listado.php" target="myFrame">
+                                    
+                                    Debitos/Creditos</a>
+                                
+                                
+                                 <a class="collapse-item" target="myFrame" href="../movimientos/conciliacion">
                                     
                                     Conciliación</a>
+                                   
                             </div>
                         </div>
 
