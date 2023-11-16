@@ -20,7 +20,8 @@ $pdf->setX(10);
 
 $f1 = $_GET['vcod'];
 $f2 = $_GET['vid'];
-$resultado = db_query("SELECT * FROM vs_ajuste WHERE aju_fecha between '$f1' and '$f2'");
+$est = $_GET['vest'];
+$resultado = db_query("SELECT * FROM vs_ajuste WHERE aju_fecha between '$f1' and '$f2' and aju_estado= '$est'");
 
 while ($row = mysqli_fetch_array($resultado)) {
     $pdf->SetFillColor(232, 232, 232);
@@ -69,7 +70,7 @@ while ($row = mysqli_fetch_array($resultado)) {
 /////////////////////////////
     $resultado2 = db_query("SELECT * FROM vs_detajuste where aju_id=$row[0]");
 //// Array de Cabecera
-    $header = array("ITEM", "MATERIAL", "MOTIVO", "CANTIDAD");
+    $header = array("ITEM", "PRODUCTO", "MOTIVO", "CANTIDAD");
 // Column widths
     $w = array(20, 95, 20, 20);
 // Header

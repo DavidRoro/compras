@@ -24,6 +24,7 @@ and open the template in the editor.
             $mov = $_POST['mov'];
             $ini = $_POST['txtinicio'];
             $fin = $_POST['txtfin'];
+            $est = $_POST['estado'];
 //            $devo='DEVOLUCIONES';
             switch ($mov) {
                 case 0:
@@ -60,7 +61,7 @@ and open the template in the editor.
                     header("location:../informes_movimientos/notaremision_informes.php?vcod=$ini&vid=$fin");
                     break;
                 case 9:
-                    header("location:../informes_movimientos/ajuste_informes.php?vcod=$ini&vid=$fin");
+                    header("location:../informes_movimientos/ajuste_informes.php?vcod=$ini&vid=$fin&vest=$est");
 
                     break;
                 case 10:
@@ -71,6 +72,11 @@ and open the template in the editor.
 
                     header("location:../informes_movimientos/notacrecompra.php");
                     break;
+
+//                case 12:
+//
+//                    header("location:../informes_movimientos/orden_pago.php");
+//                    break;
             }
         }
         ?>
@@ -133,9 +139,22 @@ and open the template in the editor.
                                                 <option value="9">AJUSTE STOCK</option>
                                                 <option value="10">STOCK</option>
                                                 <option value="11">DEVOLUCIONES</option>
+                                                <!--                                                <option value="12">DEVOLUCIONES</option>-->
                                             </select>                                        
                                         </div>  
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-9">
+                                            <select class="form-control" name="estado">
+                                                <option value="0">SELECCIONE :</option>
+                                                <option value="PENDIENTE">PENDIENTE</option>
+                                                <option value="GENERADO">GENERADO</option>
+                                                <option value="ANULADO">ANULADO</option>
+                                            </select>
+                                        </div>  
+                                    </div>
+
+
 
                                     <div class="form-group">
                                         <div class="col-lg-9">

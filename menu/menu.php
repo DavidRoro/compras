@@ -215,9 +215,15 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../movimientos/apertura_agregar.php">
                                    
                                     Apertura Y Cierre de Caja</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/pedidocliente_listado.php">
+                                   
+                                    Pedido de Clientes</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notacreditolistado.php">
                                     <img src="../Imagenes/documento.png" width="16" height="16">
                                     Nota de Credito-Debito</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/listado_venta.php">
+                                    <img src="../Imagenes/documento.png" width="16" height="16">
+                                    Registro de Ventas</a>
                             </div>
                         </div>
 

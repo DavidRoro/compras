@@ -42,7 +42,8 @@ $pdf->setX(135);
 
 $f1 = $_GET['vcod'];
 $f2 = $_GET['vid'];
-$resultado = db_query("SELECT * FROM vs_ajuste WHERE aju_fecha between '$f1' and '$f2'");
+$est = $_GET['estado'];
+$resultado = db_query("SELECT * FROM vs_ajuste WHERE aju_fecha between '$f1' and '$f2' and aju_estado= '$est'");
 
 //$pdf = new PDF();
 //$pdf->AliasNbPages();

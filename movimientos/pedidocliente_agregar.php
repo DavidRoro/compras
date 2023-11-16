@@ -1,11 +1,22 @@
-
-
 <?php
 require('../clases/conexion.php');
 require('../sesiones.php');
 //$conteo = db_query("SELECT IFNULL(MAX(ped_id),0) as conteo FROM compras.pedido");
 //$pedido = mysqli_fetch_array($conteo);
 //$idped = $pedido[0];
+$consulta = db_query("SELECT * FROM vs_pedidocliente where pedidocliente_estado='PENDIENTE' and usu_id=$idUsu");
+if (mysqli_num_rows($consulta) > 0) {
+    $tomar = mysqli_fetch_array($consulta);
+    $idped = $tomar[0];
+    $idcli = $tomar[3];
+    $clinombre = $tomar[6];
+   
+    
+//    echo "ya tenemos el ultimo ID que es:" . $ultID;
+} else {
+    $idped = 0;
+//    $sucur = "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +99,7 @@ require('../sesiones.php');
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form action="reposicion_abm.php" enctype="multipart/form-data" method="POST" role="form">
+                <form action="pedidocliente_abm.php" enctype="multipart/form-data" method="POST" role="form">
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-1 text-gray-800">DATOS DE PEDIDO</h1>-->
                     <!--<p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>-->
@@ -101,7 +112,7 @@ require('../sesiones.php');
 
                             <div class="card position-relative">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> Datos de la Reposicion</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE PEDIDO</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -117,38 +128,24 @@ require('../sesiones.php');
                                                                                 <input type="text" name="txtnombre" value="<?= $nombre ?>" class="form-control" readonly="">
                                                                             </div>  
                                                                         </div>-->
-                                    
-                                    
-                                    
-
-
 
 
                                     <div class="form-group">
                                         <div class="col-lg-9">
-                                            <label><span><i class=""></i>Fecha:</span></label>
+                                            <label><span><i class=""></i>Sucursal:</span></label>
+
+                                            <input type="hidden" name="txtidsucursal" value="<?= $idSuc ?>" id="ids" class="form-control">
+                                            <input type="text" name="txtsucursal" id="sucu" value="<?= $sucur ?>" class="form-control" readonly="">
+                                        </div>  
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-9">
+                                            <label><span><i class=""></i>Fecha de Pedido:</span></label>
 
                                             <input type="text" id="fecharegistro" class="form-control" readonly="">
                                         </div>  
                                     </div>
-
-                                
-
-
-
-
-
-                                    <div class="form-group">
-                                        <div class="col-lg-9">
-                                            <label><span><i class=""></i>Ingrese Monto:</span></label>
-
-                                            <input type="number" id="" name="monto" class="form-control">
-                                        </div>  
-                                    </div>
-
-                                    
-
-
                                 </div>
                             </div>
 
@@ -159,17 +156,43 @@ require('../sesiones.php');
 
                             <div class="card position-relative ">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> Listado de Reposiciones</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE PEDIDO</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <code>
-                                            <!--                                            <div id="mensaje">
-                                                                                            <div role="alert" class="alert alert-success">INSERTO CORRECTAMENTE!!!</div>
-                                                                                        </div>-->
+<!--                                            <div id="mensaje">
+                                                <div role="alert" class="alert alert-success">INSERTO CORRECTAMENTE!!!</div>
+                                            </div>-->
                                         </code>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label><span><i class=""></i>Codigo:</span></label>
 
+                                                <input type="text" name="txtid" value="" id="idpro" class="form-control" readonly="">  
+                                            </div>readonly
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label><span><i class=""></i>Productos:</span></label>
+
+                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" required="">    
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label><span><i class=""></i>Cantidad:</span></label>
+
+                                                <input type="number" name="txtcantidad" value="" onkeyup="validaciones();" id="" class="form-control" required="">    
+                                            </div>
+                                        </div>
+
+<!--                                        <input type="hidden" name="valor" value="<?php //echo $_GET['vcod'];   ?>"> -->
+                                        <!--</div>-->
+                                    </div>
                                     <hr class="divider">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -177,30 +200,22 @@ require('../sesiones.php');
                                                 <table class="table table-striped table-bordered dt-responsive nowrap" id="carrito">
                                                     <thead>
                                                         <tr>
-
-                                                            <th><div align="center">Codigo</div></th>
-                                                            <th><div align="center">Fecha</div></th>
-                                                            <th><div align="center">Monto</div></th>
-                                                                                                     
-                                                                                                                      
-                                                            <th><div align="center">Estado</div></th>
                                                             <th><div align="center">Acción</div></th>
+                                                            <th><div align="center">Codigo</div></th>
+                                                            <th><div align="center">Productos</div></th>
+                                                            <th><div align="center">Cantidad</div></th>
 
                                                         </tr></thead>
                                                     <?php
-                                                    $consul = db_query("select * from reposicion order by idreposicion");
+                                                    $consul = db_query("select * from vs_det_pedidocliente where idpedidocliente=$idped");
                                                     ?>
                                                     <tbody>
                                                         <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                             <tr>
-
-                                                                <td><div align="center"><?php echo $mostrardatos[0] ?></div></td>
+                                                                <td><div align="center"><a href="pedido_abm.php?delete=delete&id=<?php echo $mostrardatos[1] ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                                <td><div align="center"><?php echo $mostrardatos[1] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
-                                                                <td><div align="center"><?php echo $mostrardatos[3] ?></div></td>
-                                                                
-                                                                 
-                                                                <td><div align="center"><?php echo $mostrardatos[1] ?></div></td> 
-                                                                <td><div align="center"><button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'reposicion_abm.php?imprimir=imprimir&vcod=<?php echo $mostrardatos[0]; ?>'"><span class="fa fa-save"></span></button></div></td>
+                                                                <td><div align="center"><?php echo $mostrardatos[3] ?></div></td> 
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -263,35 +278,15 @@ require('../sesiones.php');
 
                     <!-- Custom scripts for all pages-->
                     <script src="../menu/js/sb-admin-2.min.js"></script>
-
-
                     <script>
-                                            // Obtén referencias a los elementos del DOM
-                                            const cmbtipo = document.getElementById('cmbtipo');
-                                            const montoInicialInput = document.getElementById('montoregistro');
-                                            const montoFinalInput = document.getElementById('montoregistrofinal');
+                                            $("#mensaje").hide();
+                                            function retornar{
+                                                $("#mensaje").show();
+                                                $("#mensaje").delay(4000).slideUp(200, function () {
+                                                    ($this).alert('close');
+                                                });
 
-                                            // Escucha el evento "change" del combobox
-                                            cmbtipo.addEventListener('change', function () {
-                                                // Obtén el valor seleccionado
-                                                const tipoSeleccionado = cmbtipo.value;
-
-                                                // Actualiza los campos de monto inicial y final según la selección
-                                                if (tipoSeleccionado === 'Apertura') {
-                                                    montoInicialInput.value = 'Ingrese el monto inicial';
-                                                    montoFinalInput.value = ''; // Vacía el campo de monto final
-                                                    montoFinalInput.style.display = 'none';
-                                                } else if (tipoSeleccionado === 'Cierre') {
-                                                    montoInicialInput.value = ''; // Vacía el campo de monto inicial
-                                                    montoFinalInput.value = 'Ingrese el monto final';
-                                                    montoFinalInput.style.display = 'none';
-                                                } else {
-                                                    // En caso de cualquier otro valor seleccionado
-                                                    montoInicialInput.value = '';
-                                                    montoFinalInput.value = '';
-                                                }
-                                            });
-
+                                            }
 
 
                     </script>
@@ -299,3 +294,5 @@ require('../sesiones.php');
                     </body>
 
                     </html>
+
+

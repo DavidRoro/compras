@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/reposicion.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/rendicion_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/registrocheque_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/rendicion_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/registrocheque.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/asignar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/asignar_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/reposicion_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/ordendepago.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compralistado.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/listado_venta.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/presupuesto_agregar.php</file>
         </group>
     </open-files>
 </project-private>

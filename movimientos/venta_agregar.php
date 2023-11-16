@@ -1,15 +1,15 @@
 <?php
 require('../clases/conexion.php');
 require('../sesiones.php');
-$consulta = db_query("SELECT * FROM vs_compra where com_estado='PENDIENTE' and usu_id=$idUsu");
+$consulta = db_query("SELECT * FROM vs_ventas where ventas_estado='PENDIENTE' and usu_id=$idUsu");
 if (mysqli_num_rows($consulta) > 0) {
     $tomar = mysqli_fetch_array($consulta);
     $idped = $tomar[0];
-    $nrofact = $tomar[2];
-    $tipoFact = $tomar[3];
+    $nrofact = $tomar[3];
+    $tipoFact = $tomar[7];
     $cuotas = $tomar[4];
     $intervalo = $tomar[5];
-    $idorden= $tomar[8];
+    $idorden= $tomar[13];
     $idProv = $tomar[9];
     $Prov = $tomar[10];
     $credito="";
@@ -25,9 +25,9 @@ if (mysqli_num_rows($consulta) > 0) {
     
 //    echo "ya tenemos el ultimo ID que es:" . $ultID;
 } else {
-    $datosorden = db_query("select * from vs_orden where usu_id=$idUsu and ord_estado='GENERADO';");
+    $datosorden = db_query("select * from timbrado where tim_estado='ACTIVO';");
     if ($fila = mysqli_fetch_array($datosorden)) {
-        $idorden = $fila[0];
+        $idorden = $fila[1];
         $idProv = $fila[3];
         $Prov = $fila[4];
     }else{
@@ -67,11 +67,52 @@ if (mysqli_num_rows($consulta) > 0) {
         <script type="text/javascript" src="../js/jquery-2.0.0.js"></script>
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>  
         <!--<script src="../js/jquery-3.5.1.min.js"></script>-->
-        <!--<script src="../js/buscador_matprima.js"></script>-->
+        <script src="../js/buscador_matprima.js"></script>
         <!--<script src="../js/buscador_proveedor.js"></script>-->
         <link href="../select2/select2.min.css" rel="stylesheet">
         <script src="../select2/select2.full.min.js"></script>
+                <style>
 
+            ul{
+                list-style-type: none;
+                /*                margin: 0;
+                                padding: 0;*/
+
+                overflow: hidden;
+                background-color: lightblue;
+                cursor: pointer;
+                border-radius: 0 10px 0 10px;
+                padding: 0 5px 0 5px;
+                width: 10%;
+
+            }
+            li {
+                float: left;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 10px 10px;
+                text-decoration: none;
+            }
+
+            li a:hover:not(.active) {
+                /*display: block;*/
+                color: white;
+                text-align: center;
+                padding: 10px 10px;
+                text-decoration: none;
+
+            }
+
+            .active {
+                background-color: #4CAF50;
+            }
+
+
+        </style>      
         <script>
             function AbrirCentrado(Url, NombreVentana, width, height, extras) {
                 var largo = width;
@@ -114,7 +155,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE COMPRA</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE VENTA</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -123,8 +164,8 @@ if (mysqli_num_rows($consulta) > 0) {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-5">
-                                            <label><span><i class=""></i>Orden Nº:</span></label>
-                                            <input type="text" name="txtidorden" value="<?= $idorden ?>" id="ids" class="form-control" readonly="">
+                                            <label><span><i class=""></i> Nº TIMBRADO:</span></label>
+                                            <input type="text" name="txttimbrado" value="<?= $idorden ?>" id="ids" class="form-control" readonly="">
 
                                         </div>
 
@@ -133,9 +174,24 @@ if (mysqli_num_rows($consulta) > 0) {
 
                                     <div class="form-group">
                                         <div class="col-lg-8">
-                                            <label><span><i class=""></i>Proveedor:</span></label>
-                                            <input type="hidden" name="txtidproveedor" value="<?= $idProv ?>" id="ids" class="form-control">
-                                            <input type="text" name="txtproveedor" id="sucu" value="<?= $Prov ?>" class="form-control" readonly="">
+                                            <label><span><i class=""></i>Cliente:</span></label>
+                                            <select class=" form-control" required="" name="txtidproveedor">
+                                                <option value="">Seleccione:</option>
+                                                <?php
+                                                $prove = db_query("select * from clientes order by idclientes");
+                                                while ($fila = mysqli_fetch_array($prove)) {
+                                                    $proveedores = $fila[0];
+                                                        if ($idProv == $proveedores) {
+                                                            $vprov = "selected";
+                                                        } else {
+                                                            $vprov = "";
+                                                        }
+                                                        ?>
+                                                    
+                                                    <option <?=$vprov?> value="<?php echo $fila[0]; ?>"> <?php echo $fila[1]; ?></option>
+
+                                                <?php } ?>
+                                            </select>
 
                                         </div>
                                     </div>
@@ -152,7 +208,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                                     <div class="form-group">
                                         <div class="col-lg-9">
-                                            <label><span><i class=""></i>Fecha de Compra:</span></label>
+                                            <label><span><i class=""></i>Fecha de Venta:</span></label>
 
                                             <input type="text" id="fecharegistro" class="form-control" readonly="">
                                         </div>  
@@ -172,7 +228,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative ">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE COMPRA</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE VENTA</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -236,12 +292,12 @@ if (mysqli_num_rows($consulta) > 0) {
                                             <div class="form-group">
                                                 <label><span><i class=""></i>Producto:</span></label>
 
-                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" readonly="">
-                                                <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
+                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control">
+<!--                                                <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
                                                 <?php // $valueped=$_POST['txtidpedido']; ?>
-                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_orden.php?vcod=<?php echo $idorden ?>','articulo','850','350','');">
+                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_orden.php?vcod=<?php //echo $idorden ?>','articulo','850','350','');">
                                                     <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
-                                                </a>
+                                                </a>-->
                                             </div>
                                         </div>
 
@@ -249,14 +305,14 @@ if (mysqli_num_rows($consulta) > 0) {
                                             <div class="form-group">
                                                 <label><span><i class=""></i>Cantidad:</span></label>
 
-                                                <input type="number" name="txtcantidad" value="" id="cantidad" onkeyup="validaciones();" id="" class="form-control" readonly="">    
+                                                <input type="number" name="txtcantidad" value="" id="cantidad" onkeyup="validaciones();" id="" class="form-control">    
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label><span><i class=""></i>Precio:</span></label>
 
-                                                <input type="number" name="txtprecio" id="precio" value="" onkeyup="validaciones();" id="" class="form-control" readonly="">    
+                                                <input type="number" name="txtprecio" id="precioc" value="" class="form-control" readonly="">    
                                             </div>
                                         </div>
 
@@ -388,3 +444,5 @@ if (mysqli_num_rows($consulta) > 0) {
                     </body>
 
                     </html>
+
+
