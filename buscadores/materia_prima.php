@@ -4,7 +4,7 @@ $ci = $_POST['descripcion'];
 
 $conexion = new mysqli('localhost:3306', 'root', 'minegrito', 'compras_marce') or die("ERROR " . mysqli_error());
 
-$consulta = "SELECT mat_id, mat_descri, mat_precioc FROM materia_prima WHERE mat_descri = '$ci'";
+$consulta = "SELECT mat_id, mat_precioc FROM materia_prima WHERE mat_descri = '$ci'";
 $result = $conexion->query($consulta);
 
 $respuesta = new stdClass();
@@ -12,7 +12,7 @@ if ($result) {
     if ($result->num_rows > 0) {
         $fila = $result->fetch_array();
         $respuesta->idpro = $fila[0];
-        $respuesta->precioc = $fila[2];
+        $respuesta->mat_precioc = $fila[1];
     } else {
         $respuesta->error = "No se encontraron resultados.";
     }

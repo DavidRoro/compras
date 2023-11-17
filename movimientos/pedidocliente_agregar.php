@@ -10,8 +10,8 @@ if (mysqli_num_rows($consulta) > 0) {
     $idped = $tomar[0];
     $idcli = $tomar[3];
     $clinombre = $tomar[6];
-   
-    
+
+
 //    echo "ya tenemos el ultimo ID que es:" . $ultID;
 } else {
     $idped = 0;
@@ -42,7 +42,7 @@ if (mysqli_num_rows($consulta) > 0) {
         <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>  
         <!--<script src="../js/jquery-3.5.1.min.js"></script>-->
         <script src="../js/buscador_matprima.js"></script>
-        <script src="../js/buscador_suc.js"></script>
+        <!--<script src="../js/buscador_suc.js"></script>-->
         <style>
 
             ul{
@@ -85,6 +85,22 @@ if (mysqli_num_rows($consulta) > 0) {
 
 
         </style>
+                <script>
+            function AbrirCentrado(Url, NombreVentana, width, height, extras) {
+                var largo = width;
+                var altura = height;
+                var adicionales = extras;
+                var top = (screen.height - altura) / 2;
+                var izquierda = (screen.width - largo) / 2;
+                nuevaVentana = window.open('' + Url + '', '' + NombreVentana + '', 'width=' + largo + ',height=' + altura + ',top=' + top + ',left=' + izquierda + ',features=' + adicionales + '' + ',status=yes, scrollbars=yes, resize=yes, menubar=no');
+                nuevaVentana.focus();
+            }
+            // In your Javascript (external .js resource or <script> tag)
+            $(document).ready(function () {
+                $('.js-example-basic-single').select2();
+            });
+
+        </script>
     </head>
 
     <body id="page-top" class="bg-gray-100" onLoad="getTime()">
@@ -121,13 +137,31 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </code>
 
                                     </div>
-                                    <!--                                    <div class="form-group">
-                                                                            <div class="col-lg-12">
-                                                                                <label><span><i class=""></i>Nombre y apellido:</span></label>
-                                    
-                                                                                <input type="text" name="txtnombre" value="<?= $nombre ?>" class="form-control" readonly="">
-                                                                            </div>  
-                                                                        </div>-->
+                                    <div class="form-group">
+                                        <div class="col-lg-8">
+                                            <label><span><i class=""></i>Cliente:</span></label>
+                                            <select class=" form-control" required="" name="txtidcliente">
+                                                <option value="">Seleccione:</option>
+                                                <?php
+                                                $prove = db_query("select * from clientes order by idclientes");
+                                                while ($fila = mysqli_fetch_array($prove)) {
+                                                    $cliente = $fila[0];
+                                                    if ($idcli == $cliente) {
+                                                        $vclie = "selected";
+                                                    } else {
+                                                        $vclie = "";
+                                                    }
+                                                    ?>
+
+                                                    <option <?= $vclie ?> value="<?php echo $fila[0]; ?>"> <?php echo $fila[1]; ?></option>
+
+                                                <?php } ?>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
 
 
                                     <div class="form-group">
@@ -161,9 +195,9 @@ if (mysqli_num_rows($consulta) > 0) {
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <code>
-<!--                                            <div id="mensaje">
-                                                <div role="alert" class="alert alert-success">INSERTO CORRECTAMENTE!!!</div>
-                                            </div>-->
+                                            <!--                                            <div id="mensaje">
+                                                                                            <div role="alert" class="alert alert-success">INSERTO CORRECTAMENTE!!!</div>
+                                                                                        </div>-->
                                         </code>
                                     </div>
                                     <div class="row">
@@ -178,7 +212,20 @@ if (mysqli_num_rows($consulta) > 0) {
                                             <div class="form-group">
                                                 <label><span><i class=""></i>Productos:</span></label>
 
-                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" required="">    
+                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" required=""> 
+                                                <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
+                                            
+                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_materia.php','articulo','850','350','');">
+                                                    <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label><span><i class=""></i>Precio:</span></label>
+
+                                                <input type="text" name="txtprecio" id="mat_precioc" value="" class="form-control" readonly="">    
                                             </div>
                                         </div>
 
@@ -190,7 +237,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                             </div>
                                         </div>
 
-<!--                                        <input type="hidden" name="valor" value="<?php //echo $_GET['vcod'];   ?>"> -->
+<!--                                        <input type="hidden" name="valor" value="<?php //echo $_GET['vcod'];    ?>"> -->
                                         <!--</div>-->
                                     </div>
                                     <hr class="divider">
@@ -212,7 +259,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                                     <tbody>
                                                         <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                             <tr>
-                                                                <td><div align="center"><a href="pedido_abm.php?delete=delete&id=<?php echo $mostrardatos[1] ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                                <td><div align="center"><a href="pedidocliente_abm.php?delete=delete&id=<?php echo $mostrardatos[1] ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[1] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[3] ?></div></td> 
@@ -229,7 +276,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                     </div>
 
                                     <div class="modal-footer"> 
-                                        <button class="btn btn-warning" type="text" onclick="location.href = 'pedidolistado.php'"><span class="fa fa-window-restore"></span> VOLVER</button> 
+                                        <button class="btn btn-warning" type="text" onclick="location.href = 'pedidocliente_listado.php'"><span class="fa fa-window-restore"></span> VOLVER</button> 
                                         <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
                                         <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'pedido_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
                                         <!--<button type="submit" name="agregar" id="btn-submit" class="btn btn-success"><span class="fa fa-check"></span> REGISTRAR</button>--> 
@@ -277,19 +324,6 @@ if (mysqli_num_rows($consulta) > 0) {
                     <!--<script src="../menu/vendor/jquery-easing/jquery.easing.min.js"></script>-->
 
                     <!-- Custom scripts for all pages-->
-                    <script src="../menu/js/sb-admin-2.min.js"></script>
-                    <script>
-                                            $("#mensaje").hide();
-                                            function retornar{
-                                                $("#mensaje").show();
-                                                $("#mensaje").delay(4000).slideUp(200, function () {
-                                                    ($this).alert('close');
-                                                });
-
-                                            }
-
-
-                    </script>
 
                     </body>
 

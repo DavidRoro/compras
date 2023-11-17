@@ -177,6 +177,8 @@ if (mysqli_num_rows($consulta) > 0) {
                                                 <input type="text" name="txtmateriaprima" id="descripcion" class="form-control" required="">    
                                             </div>
                                         </div>
+                                        
+                                        
 
                                         <div class="col-md-2">
                                             <div class="form-group">

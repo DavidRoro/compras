@@ -9,7 +9,7 @@ if (!empty($_POST['agregar'])) {
         $ID = mysqli_fetch_array($consucabe);
         $ped = $ID[0];
 //        $ID = mysqli_fetch_array($consucabe);
-        $detalle = db_query("call sp_det_pedidocliente($ped,$_POST[txtid],$_POST[txtcantidad])");
+        $detalle = db_query("call sp_det_pedidocliente($ped,$_POST[txtid],$_POST[txtcantidad], $_POST[txtprecio])");
 
         if ($detalle) {
 
@@ -19,12 +19,12 @@ if (!empty($_POST['agregar'])) {
     } else {
         $fecha = date('Y-m-d');
         $sucursales = $_POST['txtidsucursal'];
-        $cliente = $_POST['txtcliente'];
+        $cliente = $_POST['txtidcliente'];
         //insertar cabecera 
 //        $cabecera = db_query("insert into pedido(ped_fecha,ped_estado,suc_id,usu_id) values('$fecha','PENDIENTE',$sucursales,$idUsu)");
         $cabecera = db_query(" call sp_pedidocliente('PENDIENTE','$fecha',$cliente,$sucursales,$idUsu)");
         //consultar cabecera
-        $consucabe = db_query("select * from pedido where ped_estado='PENDIENTE' and usu_id=$idUsu");
+        $consucabe = db_query("select * from pedidocliente where pedidocliente_estado='PENDIENTE' and usu_id=$idUsu");
 //        $consucabe = db_query("SELECT IFNULL(MAX(ped_id),0) as conteo FROM pedido;");
         $ID = mysqli_fetch_array($consucabe);
         $ped = $ID[0];
