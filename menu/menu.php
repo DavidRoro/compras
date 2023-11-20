@@ -218,12 +218,16 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../movimientos/pedidocliente_listado.php">
                                    
                                     Pedido de Clientes</a>
-                                <a class="collapse-item" target="myFrame" href="../movimientos/notacreditolistado.php">
-                                    <img src="../Imagenes/documento.png" width="16" height="16">
-                                    Nota de Credito-Debito</a>
+                                
                                 <a class="collapse-item" target="myFrame" href="../movimientos/listado_venta.php">
-                                    <img src="../Imagenes/documento.png" width="16" height="16">
+
                                     Registro de Ventas</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/cobranza_listado.php">
+                                    
+                                    Gestión de Cobranzas</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionventa_listado.php">
+                                    
+                                    Nota Remision de Ventas</a>
                             </div>
                         </div>
 

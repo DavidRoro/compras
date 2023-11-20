@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compralistado.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/listado_venta.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremisionventa_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/buscadores/buscar_ctacobrar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_abm.php</file>
             <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/presupuesto_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremisionventa_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremisionventa_listado.php</file>
         </group>
     </open-files>
 </project-private>

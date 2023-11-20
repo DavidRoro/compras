@@ -5,10 +5,10 @@ include '../sesiones.php';
 //insertar registros
 if (!empty($_POST['agregar'])) {
 
-    $consulta = db_query("select * from ventas where ventas_estado='PENDIENTE' and usu_id=$idUsu");
+    $consulta = db_query("select * from cobranzas where cob_estado='PENDIENTE' and usu_id=$idUsu");
     if (mysqli_num_rows($consulta) > 0) {
         try {
-            $consucabe = db_query("select * from ventas where ventas_estado='PENDIENTE' and usu_id=$idUsu");
+            $consucabe = db_query("select * from cobranzas where cob_estado='PENDIENTE' and usu_id=$idUsu");
             $ID = mysqli_fetch_array($consucabe);
             //        echo $ID[0];
             $txtid = $_POST['txtid'];
@@ -46,7 +46,7 @@ if (!empty($_POST['agregar'])) {
 
             if (mysqli_num_rows($check_result) > 0) {
                 $_SESSION['error_message'] = "El pedido ya fue seleccionado. Por favor, elige otro.";
-                echo "<script>location.href='venta_agregar.php'</script>";
+                echo "<script>location.href='cobranza_agregar.php'</script>";
                 
             }
             $detalle = db_query("call sp_detventas($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
@@ -54,13 +54,13 @@ if (!empty($_POST['agregar'])) {
             $libroventas = db_query("call sp_libroventa($ID[0],$txtidsuc,$gravadas5,$gravadas10,$exenta,$monto,'GENERADO')");
 
             if ($detalle) {
-                echo "<script>location.href='venta_agregar.php'</script>";
+                echo "<script>location.href='cobranza_agregar.php'</script>";
             }
         } catch (QueryException $ex) {
             if ($ex->getCode() == '23000') {
                 // Handle the unique constraint violation error
                 $_SESSION['error_message'] = "El pedido ya fue seleccionado. Por favor, elige otro.";
-                echo "<script>location.href='venta_agregar.php'</script>";
+                echo "<script>location.href='cobranza_agregar.php'</script>";
             }
         }
     } else {
@@ -109,13 +109,13 @@ if (!empty($_POST['agregar'])) {
                 db_query("update ventas set venta_monto=$row[0] where idventas=$ID[0]");
             }
             if ($detalle) {
-                echo "<script>location.href='venta_agregar.php'</script>";
+                echo "<script>location.href='cobranza_agregar.php'</script>";
             }
         } catch (QueryException $ex) {
             if ($ex->getCode() == 23000) {
                 // Handle the unique constraint violation error
                 $_SESSION['error_message'] = "El pedido ya fue seleccionado. Por favor, elige otro.";
-                echo "<script>location.href='venta_agregar.php'</script>";
+                echo "<script>location.href='cobranza_agregar.php'</script>";
             }
         }
     }
@@ -134,7 +134,7 @@ if (!empty($_GET['delete'])) {
     $actualizar = db_query("update libro_venta set lib_estado='ELIMINADO' where idventas=$v2;");
     $eliminar = db_query("DELETE FROM det_ventas WHERE mat_id= $v1");
     if ($eliminar) {
-        echo "<script>location.href='venta_agregar.php'</script>";
+        echo "<script>location.href='cobranza_agregar.php'</script>";
     }
 }
 
@@ -147,6 +147,19 @@ if (!empty($_GET['imprimir'])) {
     }
 }
 
+if (!empty($_GET['efectivo'])) {
+    $f1 = $_GET['vcod'];
+    $fmonto = $_GET['vmonto'];
+//    echo $f1;
+    $update = db_query("call compras_marce.sp_cobro_efectivo($f1, $fmonto, 0);");
+    if ($update) {
+        echo "<script>location.href='cobranza_agregar.php</script>";
+    }
+}
+
+
+
+
 if (!empty($_GET['borrar'])) {
     $select = db_query("SELECT * FROM det_ventas where idventas=$_GET[vcod]");
     while ($row = mysqli_fetch_array($select)) {
@@ -157,4 +170,6 @@ if (!empty($_GET['borrar'])) {
         echo "<script>location.href='ventalistado.php'</script>";
     }
 }
+
+
 

@@ -1,26 +1,32 @@
 <?php
 require('../clases/conexion.php');
 require('../sesiones.php');
-$consulta = db_query("SELECT * FROM vs_ventas where ventas_estado='PENDIENTE' and usu_id=$idUsu");
+$consulta = db_query("SELECT * FROM vs_cobranzas where cob_estado='PENDIENTE' and usu_id=$idUsu");
 if (mysqli_num_rows($consulta) > 0) {
     $tomar = mysqli_fetch_array($consulta);
     $idped = $tomar[0];
-    $nrofact = $tomar[3];
+    $nrofact = $tomar[6];
     $tipoFact = $tomar[7];
     $cuotas = $tomar[4];
     $intervalo = $tomar[5];
     $idtimbrado = $tomar[11];
-    $nrotimbrado = $tomar[15];
+//    $nrotimbrado = $tomar[15];
     $idpedcliente = $tomar[12];
     $idProv = $tomar[10];
+    $idfor =  $tomar[2];
     $Prov = $tomar[10];
-    $credito = "";
-    $contado = "";
+    $cheque = "";
+    $tarjeta = "";
+    $efectivo = "";
+
     switch ($tipoFact) {
-        case "CREDITO":
+        case "CHEQUE":
             $credito = "selected";
             break;
-        case "CONTADO":
+        case "TARJETA":
+            $contado = "selected";
+            break;
+        case "EFECTIVO":
             $contado = "selected";
             break;
     }
@@ -131,6 +137,40 @@ if (mysqli_num_rows($consulta) > 0) {
                 $('.js-example-basic-single').select2();
             });
 
+            function handleSelectChange() {
+                var select = document.getElementById('cmbtipocobro');
+                var efectivoBtn = document.getElementById('btn-efectivo');
+                var chequeBtn = document.getElementById('btn-cheque');
+                var tarjetaBtn = document.getElementById('btn-tarjetas');
+
+                // Obtener el valor seleccionado
+                var selectedValue = select.value;
+
+                // Desactivar todos los botones
+                efectivoBtn.disabled = true;
+                chequeBtn.disabled = true;
+                tarjetaBtn.disabled = true;
+
+                // Activar el botón correspondiente según la opción seleccionada
+                if (selectedValue === '1') {
+                    efectivoBtn.disabled = false;
+                } else if (selectedValue === '2') {
+                    chequeBtn.disabled = false;
+                } else if (selectedValue === '3') {
+                    tarjetaBtn.disabled = false;
+                }
+            }
+            function enviar() {
+            // Obtener el valor del campo de entrada
+            var precio = document.getElementById('txtcantidad').value;
+            
+            // Construir la URL con el valor de vmonto
+            var url = "cobranza_abm.php?efectivo=efectivo&vcod=<?php echo $idped; ?>&vmonto=" + precio;
+
+            // Redirigir a la nueva URL
+            window.location.href = url;
+        }
+
         </script>
     </head>
 
@@ -146,7 +186,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form action="venta_abm.php" enctype="multipart/form-data" method="POST" role="form">
+                <form action="cobranza_abm.php" enctype="multipart/form-data" method="POST" role="form">
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-1 text-gray-800">DATOS DE PEDIDO</h1>-->
                     <!--<p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>-->
@@ -158,23 +198,14 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE VENTA</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DATOS DE COBRANZA</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <code></code>
 
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-5">
-                                            <label><span><i class=""></i> Nº TIMBRADO:</span></label>
-                                            <input type="hidden" id="id" name="txtidpedcliente" value="<?= $idpedcliente ?>">
-                                            <input type="hidden" id="id" name="txtidtimbrado" value="<?= $idtimbrado ?>">
-                                            <input type="text" name="txttimbrado" value="<?= $nrotimbrado ?>" id="ids" class="form-control" readonly="">
 
-                                        </div>
-
-                                    </div>
 
 
                                     <div class="form-group">
@@ -233,7 +264,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative ">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE VENTA</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> DETALLE COBRANZAS</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -242,7 +273,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                             if (isset($_SESSION['error_message'])) {
                                                 //echo "<span class='alert alert-danger'>" . $_SESSION['error_message'] . "</span>";
                                                 echo '<div class = "alert alert-danger alert-dismissible fade show" role = "alert">'
-                                                    . $_SESSION['error_message'] . '
+                                                . $_SESSION['error_message'] . '
                                                     <button type = "button" class = "close" data-dismiss = "alert" aria-label = "Close">
                                                 <span aria-hidden = "true">&times;
                                                 </span>
@@ -264,42 +295,28 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Tipo de Factura:</span></label>
+                                                <label><span><i class=""></i>Tipo de Cobro:</span></label>
 
-                                                <select class="form-control" required="" name="cmbtipofact" onchange="if (this.value == 'CONTADO') {
-                                                            document.getElementById('intervalo').readonly = true;
-                                                            document.getElementById('intervalo').value = 0;
-                                                            document.getElementById('cuotas').readonly = true;
-                                                            document.getElementById('cuotas').value = 1;
-
+                                                <select class="form-control" required="" id="cmbtipocobro" name="cmbtipocobro" onchange="handleSelectChange()">
+                                                    <option value="">Seleccione:</option>
+                                                    <?php
+                                                    $prove = db_query("select * from forma_cobro order by for_cob_id");
+                                                    while ($fila = mysqli_fetch_array($prove)) {
+                                                        $cobro = $fila[0];
+                                                        if ($idfor == $cobro) {
+                                                            $vprov = "selected";
                                                         } else {
-                                                            document.getElementById('intervalo').disabled = false;
-                                                            document.getElementById('intervalo').value = '';
-                                                            document.getElementById('cuotas').disabled = false;
-                                                            document.getElementById('cuotas').focus();
-                                                            document.getElementById('cuotas').value = '';
+                                                            $vprov = "";
+                                                        }
+                                                        ?>
 
-                                                        }">
-                                                    <option value="">SELECCIONE:</option>
-                                                    <option <?= $credito ?> value="CREDITO">CREDITO</option>
-                                                    <option <?= $contado ?> value="CONTADO">CONTADO</option>
+                                                        <option <?= $vprov ?> value="<?php echo $fila[0]; ?>"> <?php echo $fila[1]; ?></option>
+
+                                                    <?php } ?>
                                                 </select>                                            
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Cuotas:</span></label>
 
-                                                <input type="number" name="txtcuotas" value="<?= $cuotas ?>" id="cuotas" class="form-control" required="">  
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Intervalo:</span></label>
-
-                                                <input type="number" name="txtintervalo" value="<?= $intervalo ?>" id="intervalo" class="form-control" required="">  
-                                            </div>
-                                        </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
@@ -310,30 +327,30 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Producto:</span></label>
+                                                <label><span><i class=""></i>Eliga Cuenta A Cobrar:</span></label>
 
                                                 <input type="text" name="txtmateriaprima" id="descripcion" class="form-control">
                                                 <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
 
-                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_pedidocliente.php?vcod=<?php echo $idpedcliente ?>','articulo','850','350','');">
+                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_ctacobrar.php?vcod=<?php echo $idpedcliente ?>','articulo','850','350','');">
                                                     <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
                                                 </a>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Precio:</span></label>
+                                                <label><span><i class=""></i>Estado:</span></label>
 
-                                                <input type="number" name="txtprecio" id="precioc" value="" class="form-control" readonly="">    
+                                                <input type="text" name="txtprecio" id="precioc" value="" class="form-control" readonly="">    
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label><span><i class=""></i>Cantidad:</span></label>
+                                                <label><span><i class=""></i>Monto:</span></label>
 
-                                                <input type="number" name="txtcantidad" value="" id="cantidad" onkeyup="validaciones();" id="" class="form-control">    
+                                                <input type="number" name="txtcantidad" value="" id="txtcantidad" onkeyup="validaciones();" id="" class="form-control">    
                                             </div>
                                         </div>
 
@@ -370,7 +387,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                                         <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                             <tr>
                                                                 <td><div align="center"><a href="venta_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
-                                                                <!--<td><div align="center"><?php //echo $mostrardatos[1]                                   ?></div></td>-->
+                                                                <!--<td><div align="center"><?php //echo $mostrardatos[1]                                     ?></div></td>-->
                                                                 <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[4] ?></div></td> 
                                                                 <td><div align="center"><?php echo number_format($mostrardatos[5], 0, ',', '.') ?></div></td> 
@@ -407,12 +424,14 @@ if (mysqli_num_rows($consulta) > 0) {
                                     </div>
 
                                     <div class="modal-footer"> 
-                                        <button class="btn btn-warning" type="button" onclick="location.href = 'compralistado.php'"><span class="fa fa-window-restore"></span> VOLVER</button> 
-                                        <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
-                                        <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'compra_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
-                                        <!--<button type="submit" name="agregar" id="btn-submit" class="btn btn-success"><span class="fa fa-check"></span> REGISTRAR</button>--> 
-                                        <!--<input type="submit" name="agregar" id="btn-submit" class="btn btn-success glyphicon glyphicon-check" value="REGISTRAR">-->
-                                        <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"><span class="fa fa-check"></span> REGISTRAR</button>
+
+                                        <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"> AGREGAR</button>
+                                            <button type="submit" name="efectivo" id="btn-efectivo" class="btn btn-info" onclick="enviar()"><span class="fa fa-check"></span> EFECITVO</button> 
+                                            <input type="submit" name="cheque" id="btn-cheque" class="btn btn-primary glyphicon glyphicon-check" value="CHEQUE">
+                                            <input type="submit" name="tarjeta" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="TARJETA">
+
+                                            <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
+                                            <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'compra_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
                                         </div>
                                         </form>
                                     </div>
