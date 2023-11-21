@@ -104,22 +104,22 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../referenciales/personalistado.php">
                                     Personal</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/proveedorlistado.php">
-                                    
+
                                     Proveedor</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/vehiculolistado.php">
-                                    
+
                                     Vehiculo
 
                                 </a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/usuariolistado.php">
-                                                                        Usuario</a>
+                                    Usuario</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/materiaprimalistado.php">
-                                                                        Productos</a>
+                                    Productos</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/sucursalistado.php">
-                                    
+
                                     Sucursal</a>
                                 <a class="collapse-item" target="myFrame" href="../referenciales/motivolistado.php">
-                                    	
+
                                     Motivo Ajuste</a>
                             </div>
                         </div>
@@ -138,12 +138,12 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../referenciales/clasificacionlistado.php">
                                     <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
                                     Clasificación</a>
-                                
+
                             </div>
                         </div>
                     </li>
-                    
-                    
+
+
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                             <i class="fas fa-fw fa-wrench"></i>
@@ -155,21 +155,21 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../referenciales/cuentabancaria_listado.php">
                                     <img src="../Imagenes/flecha-derecha.png" width="16" height="16">
                                     Cuenta Bancaria</a>
-                                
+
                             </div>
                         </div>
                     </li>
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
 
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
                     <!-- Heading -->
-                   
+
 
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item">
@@ -181,22 +181,22 @@ mysqli_query($con, $sql);
                             <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" target="myFrame" href="../movimientos/pedidolistado.php">
-                                    
+
                                     Pedido</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/presupuestolistado.php">
-                                    
+
                                     Presupuesto</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/ordencompralistado.php">
-                                                                        Orden de Compra</a>
+                                    Orden de Compra</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/compralistado.php">
-                                   
+
                                     Factura</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notacreditolistado.php">
-                                                                        Nota de Credito-Debito</a>
+                                    Nota de Credito-Debito</a>
                                 <a class="collapse-item" href="../movimientos/ajustelistado.php" target="myFrame">
-                                                                        Ajuste de Stock</a>
+                                    Ajuste de Stock</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionlistado.php">
-                                    
+
                                     Nota de Remision</a>
                             </div>
                         </div>
@@ -213,21 +213,24 @@ mysqli_query($con, $sql);
                             <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" target="myFrame" href="../movimientos/apertura_agregar.php">
-                                   
+
                                     Apertura Y Cierre de Caja</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/pedidocliente_listado.php">
-                                   
+
                                     Pedido de Clientes</a>
-                                
+
                                 <a class="collapse-item" target="myFrame" href="../movimientos/listado_venta.php">
 
                                     Registro de Ventas</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/cobranza_listado.php">
-                                    
+
                                     Gestión de Cobranzas</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/notaremisionventa_listado.php">
-                                    
                                     Nota Remision de Ventas</a>
+                                <a class="collapse-item" target="myFrame" href="../movimientos/notacreditoventaslistado.php">
+                                    Nota de Credito-Debito</a>
+
+
                             </div>
                         </div>
 
@@ -240,43 +243,43 @@ mysqli_query($con, $sql);
                         </a>
                         <div id="uno" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                
+
                                 <a class="collapse-item" href="../movimientos/pagofactura_listado.php" target="myFrame">
-                                    
+
                                     Pagos de Facturas</a>
-                                
+
                                 <a class="collapse-item" href="../movimientos/ordendepago.php" target="myFrame">
-                                    
+
                                     Orden de Pago</a>
-                                
+
                                 <a class="collapse-item" href="../movimientos/registrocheque.php" target="myFrame">
-                                    
+
                                     Registro de Cheques</a>
 
                                 <a class="collapse-item" target="myFrame" href="../movimientos/asignar.php">
-                                    
+
                                     Asignar Fondo Fijo</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/rendicion_agregar.php">
-                                    
+
                                     Rendición de Gastos</a>
-                                
+
                                 <a class="collapse-item" target="myFrame" href="../movimientos/reposicion.php">
-                                    
+
                                     Reposicion</a>
-                                
+
                                 <a class="collapse-item" target="myFrame" href="../movimientos/depositobancario_agregar.php">
-                                    
+
                                     Deposito Bancario</a>
-                                
+
                                 <a class="collapse-item" href="../movimientos/debitoscreditos_listado.php" target="myFrame">
-                                    
+
                                     Debitos/Creditos</a>
-                                
-                                
-                                 <a class="collapse-item" target="myFrame" href="../movimientos/conciliacion">
-                                    
+
+
+                                <a class="collapse-item" target="myFrame" href="../movimientos/conciliacion">
+
                                     Conciliación</a>
-                                   
+
                             </div>
                         </div>
 
@@ -697,8 +700,8 @@ mysqli_query($con, $sql);
                 </ul>
 
             </nav>
-            
-   <!--style="height: 550px; width: 100%;"-->
+
+            <!--style="height: 550px; width: 100%;"-->
 
             <div class="container-fluid" style="height: 550px; width: 100%;">
                 <!--<div class="m-4" >-->
@@ -734,60 +737,60 @@ mysqli_query($con, $sql);
 
 
     </div>
-    </div>
-        <!-- Footer -->
-        <!--      <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                  <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                  </div>
-                </div>
-              </footer>-->
-        <!-- End of Footer -->
+</div>
+<!-- Footer -->
+<!--      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
+          </div>
+        </div>
+      </footer>-->
+<!-- End of Footer -->
 
-    
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+<!-- End of Page Wrapper -->
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Esta seguro que desea salir?.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="../logout.php">Salir</a>
-                </div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Esta seguro que desea salir?.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="../logout.php">Salir</a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

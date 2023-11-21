@@ -13,7 +13,7 @@ if (mysqli_num_rows($consulta) > 0) {
 //    $nrotimbrado = $tomar[15];
     $idpedcliente = $tomar[12];
     $idProv = $tomar[10];
-    $idfor =  $tomar[2];
+    $idfor = $tomar[2];
     $Prov = $tomar[10];
     $cheque = "";
     $tarjeta = "";
@@ -161,15 +161,15 @@ if (mysqli_num_rows($consulta) > 0) {
                 }
             }
             function enviar() {
-            // Obtener el valor del campo de entrada
-            var precio = document.getElementById('txtcantidad').value;
-            
-            // Construir la URL con el valor de vmonto
-            var url = "cobranza_abm.php?efectivo=efectivo&vcod=<?php echo $idped; ?>&vmonto=" + precio;
+                // Obtener el valor del campo de entrada
+                var precio = document.getElementById('txtcantidad').value;
 
-            // Redirigir a la nueva URL
-            window.location.href = url;
-        }
+                // Construir la URL con el valor de vmonto
+                var url = "cobranza_abm.php?efectivo=efectivo&vcod=<?php echo $idped; ?>&vmonto=" + precio;
+                console.log("URL:", url);
+                // Redirigir a la nueva URL
+                window.location.href(url);
+            }
 
         </script>
     </head>
@@ -317,122 +317,125 @@ if (mysqli_num_rows($consulta) > 0) {
                                             </div>
                                         </div>
 
+<!--                                        </form>>
+                                        <form action="cobranza_efectivo_abm.php" enctype="multipart/form-data" method="POST" role="form">-->
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label><span><i class=""></i>Codigo:</span></label>
 
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Codigo:</span></label>
-
-                                                <input type="text" name="txtid" value="" id="idpro" class="form-control" readonly="">  
+                                                    <input type="text" name="txtid" value="" id="idpro" class="form-control" readonly="">  
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Eliga Cuenta A Cobrar:</span></label>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label><span><i class=""></i>Eliga Cuenta A Cobrar:</span></label>
 
-                                                <input type="text" name="txtmateriaprima" id="descripcion" class="form-control">
-                                                <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
+                                                    <input type="text" name="txtmateriaprima" id="descripcion" class="form-control">
+                                                    <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
 
-                                                <a href="javascript:AbrirCentrado('../buscadores/buscar_ctacobrar.php?vcod=<?php echo $idpedcliente ?>','articulo','850','350','');">
-                                                    <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
-                                                </a>
+                                                    <a href="javascript:AbrirCentrado('../buscadores/buscar_ctacobrar.php?vcod=<?php echo $idpedcliente ?>','articulo','850','350','');">
+                                                        <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Estado:</span></label>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><span><i class=""></i>Estado:</span></label>
 
-                                                <input type="text" name="txtprecio" id="precioc" value="" class="form-control" readonly="">    
+                                                    <input type="text" name="txtprecio" id="precioc" value="" class="form-control" readonly="">    
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label><span><i class=""></i>Monto:</span></label>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label><span><i class=""></i>Monto:</span></label>
 
-                                                <input type="number" name="txtcantidad" value="" id="txtcantidad" onkeyup="validaciones();" id="" class="form-control">    
+                                                    <input type="number" name="txtcantidad" value="" id="txtcantidad" onkeyup="validaciones();" id="" class="form-control">    
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <input type="hidden" name="txtimpuesto" value=""> 
-                                        <!--</div>-->
-                                    </div>
-                                    <hr class="divider">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-bordered dt-responsive nowrap" id="carrito">
-                                                    <thead>
-                                                        <tr>
-                                                            <th><div align="center">Acción</div></th>
-                                                            <!--<th><div align="center">Codigo</div></th>-->
-                                                            <th><div align="center">Descripcion</div></th>
-                                                            <th><div align="center">Cant</div></th>
-                                                            <th><div align="center">Precio</div></th>
-                                                            <th><div align="center">5%</div></th>
-                                                            <th><div align="center">10%</div></th>
-                                                            <th><div align="center">Exenta</div></th>
-                                                            <th><div align="center">Subtotal</div></th>
+                                            <input type="hidden" name="txtimpuesto" value=""> 
 
-                                                        </tr></thead>
-                                                    <?php
-                                                    $consul = db_query("select * from vs_detventas where idventas=$idped");
-                                                    $iva5 = 0;
-                                                    $iva10 = 0;
-                                                    $exenta = 0;
-                                                    $sumar = 0;
-                                                    ?>
-                                                    <tbody>
-                                                        <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
-                                                            <tr>
-                                                                <td><div align="center"><a href="venta_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
-                                                                <!--<td><div align="center"><?php //echo $mostrardatos[1]                                     ?></div></td>-->
-                                                                <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
-                                                                <td><div align="center"><?php echo $mostrardatos[4] ?></div></td> 
-                                                                <td><div align="center"><?php echo number_format($mostrardatos[5], 0, ',', '.') ?></div></td> 
-                                                                <td><div align="center"><?php echo $mostrardatos[6] ?></div></td> 
-                                                                <?php $iva5 += $mostrardatos[6] ?>
-                                                                <td><div align="center"><?php echo $mostrardatos[7] ?></div></td> 
-                                                                <?php $iva10 += $mostrardatos[7] ?>
-                                                                <td><div align="center"><?php echo $mostrardatos[8] ?></div></td> 
-                                                                <?php $exenta += $mostrardatos[8] ?>
-                                                                <td><div align="center"><?php echo number_format($mostrardatos[9], 0, ',', '.') ?></div></td>
-                                                                <?php $sumar += $mostrardatos[9] ?>
+                                            <!--</div>-->
+                                            </div>
+                                            <hr class="divider">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped table-bordered dt-responsive nowrap" id="carrito">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><div align="center">Acción</div></th>
+                                                                    <!--<th><div align="center">Codigo</div></th>-->
+                                                                    <th><div align="center">Descripcion</div></th>
+                                                                    <th><div align="center">Cant</div></th>
+                                                                    <th><div align="center">Precio</div></th>
+                                                                    <th><div align="center">5%</div></th>
+                                                                    <th><div align="center">10%</div></th>
+                                                                    <th><div align="center">Exenta</div></th>
+                                                                    <th><div align="center">Subtotal</div></th>
 
-                                                            </tr>
-                                                        <?php } ?>
-                                                    </tbody>
+                                                                </tr></thead>
+                                                            <?php
+                                                            $consul = db_query("select * from vs_detventas where idventas=$idped");
+                                                            $iva5 = 0;
+                                                            $iva10 = 0;
+                                                            $exenta = 0;
+                                                            $sumar = 0;
+                                                            ?>
+                                                            <tbody>
+                                                                <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
+                                                                    <tr>
+                                                                        <td><div align="center"><a href="venta_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                                        <!--<td><div align="center"><?php //echo $mostrardatos[1]                                       ?></div></td>-->
+                                                                        <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
+                                                                        <td><div align="center"><?php echo $mostrardatos[4] ?></div></td> 
+                                                                        <td><div align="center"><?php echo number_format($mostrardatos[5], 0, ',', '.') ?></div></td> 
+                                                                        <td><div align="center"><?php echo $mostrardatos[6] ?></div></td> 
+                                                                        <?php $iva5 += $mostrardatos[6] ?>
+                                                                        <td><div align="center"><?php echo $mostrardatos[7] ?></div></td> 
+                                                                        <?php $iva10 += $mostrardatos[7] ?>
+                                                                        <td><div align="center"><?php echo $mostrardatos[8] ?></div></td> 
+                                                                        <?php $exenta += $mostrardatos[8] ?>
+                                                                        <td><div align="center"><?php echo number_format($mostrardatos[9], 0, ',', '.') ?></div></td>
+                                                                        <?php $sumar += $mostrardatos[9] ?>
 
+                                                                    </tr>
+                                                                <?php } ?>
+                                                            </tbody>
+
+                                                        </table>
+                                                        <div id="mensaje"></div>
+
+                                                    </div>
+                                                </div>
+                                                <table class='table dt-responsive ' id="carritototal">
+
+                                                    <tr>
+                                                        <th><span class="Estilo9"><label>Total:&nbsp;&nbsp;<?= number_format($sumar, 0, ',', '.'); ?></label></span></th>
+                                                        <th><span class="Estilo9"><label>Total IVA 5:&nbsp;&nbsp;<?= number_format($iva5, 0, ',', '.'); ?></label></span></th>
+                                                        <th><span class="Estilo9"><label>Total IVA 10:&nbsp;&nbsp;<?= number_format($iva10, 0, ',', '.'); ?></label></span></th>
+                                                        <th><span class="Estilo9"><label>Total EXENTA:&nbsp;&nbsp;<?= number_format($exenta, 0, ',', '.'); ?></label></span></th>
+
+                                                    </tr>
                                                 </table>
-                                                <div id="mensaje"></div>
+
 
                                             </div>
-                                        </div>
-                                        <table class='table dt-responsive ' id="carritototal">
 
-                                            <tr>
-                                                <th><span class="Estilo9"><label>Total:&nbsp;&nbsp;<?= number_format($sumar, 0, ',', '.'); ?></label></span></th>
-                                                <th><span class="Estilo9"><label>Total IVA 5:&nbsp;&nbsp;<?= number_format($iva5, 0, ',', '.'); ?></label></span></th>
-                                                <th><span class="Estilo9"><label>Total IVA 10:&nbsp;&nbsp;<?= number_format($iva10, 0, ',', '.'); ?></label></span></th>
-                                                <th><span class="Estilo9"><label>Total EXENTA:&nbsp;&nbsp;<?= number_format($exenta, 0, ',', '.'); ?></label></span></th>
+                                            <div class="modal-footer"> 
 
-                                            </tr>
-                                        </table>
-
-
-                                    </div>
-
-                                    <div class="modal-footer"> 
-
-                                        <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"> AGREGAR</button>
-                                            <button type="submit" name="efectivo" id="btn-efectivo" class="btn btn-info" onclick="enviar()"><span class="fa fa-check"></span> EFECITVO</button> 
-                                            <input type="submit" name="cheque" id="btn-cheque" class="btn btn-primary glyphicon glyphicon-check" value="CHEQUE">
-                                            <input type="submit" name="tarjeta" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="TARJETA">
-
-                                            <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
-                                            <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'compra_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
-                                        </div>
+                                                <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"> AGREGAR</button>
+                                                    
+                                                    <input type="submit" name="cheque" id="btn-cheque" class="btn btn-primary glyphicon glyphicon-check" value="CHEQUE">
+                                                    <input type="submit" name="tarjeta" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="TARJETA">
+                                                    <input type="submit" name="efectivo" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="EFECTIVO">
+                                                            
+                                                    <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
+                                                    <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'compra_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
+                                                </div>
                                         </form>
                                     </div>
 

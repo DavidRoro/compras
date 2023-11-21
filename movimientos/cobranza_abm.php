@@ -47,7 +47,6 @@ if (!empty($_POST['agregar'])) {
             if (mysqli_num_rows($check_result) > 0) {
                 $_SESSION['error_message'] = "El pedido ya fue seleccionado. Por favor, elige otro.";
                 echo "<script>location.href='cobranza_agregar.php'</script>";
-                
             }
             $detalle = db_query("call sp_detventas($ID[0],$txtid,$txtidsuc, $txtcant,$txtprecio , $gravadas5, $gravadas10, $exenta)");
 
@@ -144,16 +143,6 @@ if (!empty($_GET['imprimir'])) {
     $update = db_query("update ventas set ventas_estado='GENERADO' where idventas=$f1");
     if ($update) {
         echo "<script>location.href='ventas_impresion.php?vcod=$f1'</script>";
-    }
-}
-
-if (!empty($_GET['efectivo'])) {
-    $f1 = $_GET['vcod'];
-    $fmonto = $_GET['vmonto'];
-//    echo $f1;
-    $update = db_query("call compras_marce.sp_cobro_efectivo($f1, $fmonto, 0);");
-    if ($update) {
-        echo "<script>location.href='cobranza_agregar.php</script>";
     }
 }
 
