@@ -5,47 +5,32 @@ $consulta = db_query("SELECT * FROM vs_cobranzas where cob_estado='PENDIENTE' an
 if (mysqli_num_rows($consulta) > 0) {
     $tomar = mysqli_fetch_array($consulta);
     $idped = $tomar[0];
-    $nrofact = $tomar[6];
-    $tipoFact = $tomar[7];
-    $cuotas = $tomar[4];
-    $intervalo = $tomar[5];
-    $idtimbrado = $tomar[11];
+    $nrofact = $tomar[5];
 //    $nrotimbrado = $tomar[15];
-    $idpedcliente = $tomar[12];
+    $idpedcliente = $tomar[6];
     $idProv = $tomar[10];
-    $idfor = $tomar[2];
-    $Prov = $tomar[10];
-    $cheque = "";
-    $tarjeta = "";
-    $efectivo = "";
+    $idventas = $tomar[1];
+    //$idfor = $tomar[2];
+    //$Prov = $tomar[10];
 
-    switch ($tipoFact) {
-        case "CHEQUE":
-            $credito = "selected";
-            break;
-        case "TARJETA":
-            $contado = "selected";
-            break;
-        case "EFECTIVO":
-            $contado = "selected";
-            break;
-    }
+
 
 //    echo "ya tenemos el ultimo ID que es:" . $ultID;
 } else {
-    $datosorden = db_query("select * from timbrado where tim_estado='ACTIVO';");
+    $datosorden = db_query("select * from ventas where ventas_estado='GENERADO';");
     if ($fila = mysqli_fetch_array($datosorden)) {
-        $idorden = $fila[1];
-        $idProv = $fila[3];
-        $Prov = $fila[4];
+        $idventas = $fila[0];
+        $nrofact = $fila[3];
+        $idProv = $fila[9];
+        //$Prov = $fila[4];
     } else {
-        $idorden = "SIN ORDEN";
-        $Prov = "NO DISPONIBLE";
+        $idventas = "SIN VENTAS";
+        //$Prov = "NO DISPONIBLE";
     }
     $idped = 0;
     $nrofact = "";
     $cuotas = "";
-    $intervalo = "";
+    $idProv = null;
     $credito = "";
     $contado = "";
     $idpedcliente = null;
@@ -290,6 +275,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                             <div class="form-group">
                                                 <label><span><i class=""></i>Nº de Factura:</span></label>
 
+                                                <input type="hidden" name="txtidventas" value="<?= $idventas ?>" autofocus="" class="form-control" required="">  
                                                 <input type="text" name="txtfact" value="<?= $nrofact ?>" autofocus="" class="form-control" required="">  
                                             </div>
                                         </div>
@@ -319,13 +305,13 @@ if (mysqli_num_rows($consulta) > 0) {
 
 <!--                                        </form>>
                                         <form action="cobranza_efectivo_abm.php" enctype="multipart/form-data" method="POST" role="form">-->
-                                            <div class="col-md-2">
+<!--                                            <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label><span><i class=""></i>Codigo:</span></label>
+                                                    <label><span><i class=""></i>Codigo:</span></label>-->
 
-                                                    <input type="text" name="txtid" value="" id="idpro" class="form-control" readonly="">  
-                                                </div>
-                                            </div>
+                                                    <input type="hidden" name="txtid" value="" id="idpro" class="form-control" readonly="">  
+<!--                                                </div>
+                                            </div>-->
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label><span><i class=""></i>Eliga Cuenta A Cobrar:</span></label>
@@ -333,7 +319,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                                     <input type="text" name="txtmateriaprima" id="descripcion" class="form-control">
                                                     <small><span class="symbol required">Haga clic en el icono para buscar...</span></span> </small>
 
-                                                    <a href="javascript:AbrirCentrado('../buscadores/buscar_ctacobrar.php?vcod=<?php echo $idpedcliente ?>','articulo','850','350','');">
+                                                    <a href="javascript:AbrirCentrado('../buscadores/buscar_ctacobrar.php?vcod=<?php echo $idventas ?>','articulo','850','350','');">
                                                         <img src="../Imagenes/anadir.png" border="0" alt="Buscar" />
                                                     </a>
                                                 </div>
