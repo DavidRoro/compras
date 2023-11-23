@@ -57,7 +57,7 @@
                                         <th>ESTADO</th>
                                         <th>Nº DE FACTURA</th>   
                                         <th>MONTO</th>
-                                        <th>FORMA DE COBRO</th>
+                                        <th>CLIENTES</th>
                                         <th>ACCIONES</th>
 
                                     </tr>
@@ -65,21 +65,21 @@
 
                                 <?php
                                 while ($fila = mysqli_fetch_array($datos)) {
-                                    $date = new DateTime($fila[3]);
+                                    $date = new DateTime($fila[2]);
                                     ?>
                                     <tbody align="center">
                                         <tr>
                                             <td><?php echo $fila[0]; ?></td>
                                             <td><?php echo date_format($date, 'd-m-Y'); ?></td>
-                                            <?php if ($fila[5] == 'GENERADO') { ?>
-                                                <td class="text-success"><?php echo $fila[5]; ?></td>
+                                            <?php if ($fila[4] == 'GENERADO') { ?>
+                                                <td class="text-success"><?php echo $fila[4]; ?></td>
                                             <?php } else { ?>
-                                                <td class="text-danger"><?php echo $fila[5]; ?></td>
+                                                <td class="text-danger"><?php echo $fila[4]; ?></td>
 
                                             <?php } ?>
-                                            <td><?php echo "N° 000".$fila[6]; ?></td>
-                                            <td><?php echo $fila[4]; ?></td>
-                                            <td><?php echo $fila[8]; ?></td>
+                                            <td><?php echo "N° 000".$fila[5]; ?></td>
+                                            <td><?php echo $fila[3]; ?></td>
+                                            <td><?php echo $fila[6]; ?></td>
                                             <td>
                                                 <!--<a href="pedido_editar.php?vcod=<?php echo $fila[0]; ?>" class="btn btn-info btn-sm"><span class="fa fa-edit"></span></a>-->
                                                 <a href="cobranza_abm.php?borrar=borrar&vcod=<?php echo $fila[0]; ?>" class="btn btn-danger btn-sm"><span class="fa fa-trash"></a>

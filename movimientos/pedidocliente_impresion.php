@@ -43,8 +43,8 @@ $pdf->setX(135);
 
 $f1 = $_GET['vcod'];
 
-$resultado = db_query("SELECT * FROM vs_pedido WHERE ped_id=$f1")or die(mysqli_error($con));
-$resultado2 = db_query("SELECT * FROM vs_detpedido where ped_id=$f1")or die(mysqli_error($con));
+$resultado = db_query("SELECT * FROM vs_pedidocliente WHERE idpedidocliente=$f1")or die(mysqli_error($con));
+$resultado2 = db_query("SELECT * FROM vs_det_pedidocliente where idpedidocliente=$f1")or die(mysqli_error($con));
 
 $pdf->SetFillColor(232, 232, 232);
 $pdf->SetFont('Arial', 'B', 12);
@@ -54,7 +54,7 @@ $pdf->Ln(10);
 $pdf->Cell(30);
 $pdf->SetFont('Arial', '', 10);
 if ($row = mysqli_fetch_array($resultado)) {
-    $date = new DateTime($row['ped_fecha']);
+    $date = new DateTime($row['pedidocliente_fecha']);
 //    $pdf->Cell(135, 6, 'NUMERO DE PEDIDO: ' . $row[0], 1, 0, 'R', 0);
     $pdf->Ln();
     $pdf->Cell(180, 6, 'FECHA DE SOLICITUD: ' . date_format($date, 'd-m-Y').'                                                                     | NUMERO DE PEDIDO: '. $row[0], 1, 1, 'L', 0);
@@ -85,9 +85,10 @@ while ($row = mysqli_fetch_array($resultado2)) {
     $pdf->Cell($w[2], 5, $row[3], 1, 0, 'C');
     $pdf->Ln();
 }
-$pdf->Output('pedido.pdf','I');
+$pdf->Output('pedidocliente.pdf','I');
 
 
 ob_end_flush();
 ?>
 		
+

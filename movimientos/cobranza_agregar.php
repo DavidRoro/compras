@@ -303,11 +303,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                             </div>
                                         </div>
 
-<!--                                        </form>>
-                                        <form action="cobranza_efectivo_abm.php" enctype="multipart/form-data" method="POST" role="form">-->
-<!--                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label><span><i class=""></i>Codigo:</span></label>-->
+
 
                                                     <input type="hidden" name="txtid" value="" id="idpro" class="form-control" readonly="">  
 <!--                                                </div>
@@ -354,39 +350,32 @@ if (mysqli_num_rows($consulta) > 0) {
                                                             <thead>
                                                                 <tr>
                                                                     <th><div align="center">Acción</div></th>
-                                                                    <!--<th><div align="center">Codigo</div></th>-->
-                                                                    <th><div align="center">Descripcion</div></th>
-                                                                    <th><div align="center">Cant</div></th>
-                                                                    <th><div align="center">Precio</div></th>
-                                                                    <th><div align="center">5%</div></th>
-                                                                    <th><div align="center">10%</div></th>
-                                                                    <th><div align="center">Exenta</div></th>
-                                                                    <th><div align="center">Subtotal</div></th>
+                                                                    <th><div align="center">Codigo</div></th>
+                                                                    <th><div align="center">Forma de Cobro</div></th>
+                                                                    <th><div align="center">Monto a Pagar</div></th>
+                                                                    <th><div align="center">Monto a Cobrar</div></th>
+                                                                    <th><div align="center">Vuelto</div></th>
+                                                                    <
 
                                                                 </tr></thead>
                                                             <?php
-                                                            $consul = db_query("select * from vs_detventas where idventas=$idped");
-                                                            $iva5 = 0;
-                                                            $iva10 = 0;
-                                                            $exenta = 0;
-                                                            $sumar = 0;
+                                                            $consul = db_query("select * from vs_detcobranzas where cob_id=$idped");
+                                                          
                                                             ?>
                                                             <tbody>
                                                                 <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                                     <tr>
-                                                                        <td><div align="center"><a href="venta_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                                        <td><div align="center"><a href="cobranza_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
                                                                         <!--<td><div align="center"><?php //echo $mostrardatos[1]                                       ?></div></td>-->
-                                                                        <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
+                                                                        <td><div align="center"><?php echo $mostrardatos[1] ?></div></td>
+                                                                        <td><div align="center"><?php echo $mostrardatos[2] ?></div></td> 
+                                                                        <td><div align="center"><?php echo number_format($mostrardatos[3], 0, ',', '.') ?></div></td> 
                                                                         <td><div align="center"><?php echo $mostrardatos[4] ?></div></td> 
-                                                                        <td><div align="center"><?php echo number_format($mostrardatos[5], 0, ',', '.') ?></div></td> 
-                                                                        <td><div align="center"><?php echo $mostrardatos[6] ?></div></td> 
-                                                                        <?php $iva5 += $mostrardatos[6] ?>
-                                                                        <td><div align="center"><?php echo $mostrardatos[7] ?></div></td> 
-                                                                        <?php $iva10 += $mostrardatos[7] ?>
-                                                                        <td><div align="center"><?php echo $mostrardatos[8] ?></div></td> 
-                                                                        <?php $exenta += $mostrardatos[8] ?>
-                                                                        <td><div align="center"><?php echo number_format($mostrardatos[9], 0, ',', '.') ?></div></td>
-                                                                        <?php $sumar += $mostrardatos[9] ?>
+                                                                       
+                                                                        <td><div align="center"><?php echo $mostrardatos[5] ?></div></td> 
+                                                                       
+                                                                      
+                                                                        
 
                                                                     </tr>
                                                                 <?php } ?>
@@ -400,11 +389,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                                 <table class='table dt-responsive ' id="carritototal">
 
                                                     <tr>
-                                                        <th><span class="Estilo9"><label>Total:&nbsp;&nbsp;<?= number_format($sumar, 0, ',', '.'); ?></label></span></th>
-                                                        <th><span class="Estilo9"><label>Total IVA 5:&nbsp;&nbsp;<?= number_format($iva5, 0, ',', '.'); ?></label></span></th>
-                                                        <th><span class="Estilo9"><label>Total IVA 10:&nbsp;&nbsp;<?= number_format($iva10, 0, ',', '.'); ?></label></span></th>
-                                                        <th><span class="Estilo9"><label>Total EXENTA:&nbsp;&nbsp;<?= number_format($exenta, 0, ',', '.'); ?></label></span></th>
-
+                                                       
                                                     </tr>
                                                 </table>
 

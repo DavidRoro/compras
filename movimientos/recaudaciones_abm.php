@@ -6,9 +6,9 @@ require('../sesiones.php');
 if (!empty($_POST['agregar'])) {
 
     $fecha = date('Y-m-d');
-    $debe = $_POST['debe'];
-    $haber = $_POST['haber'];
-    $saldo = $_POST['saldo'];
+    $monto = $_POST['monto'];
+    $concepto = $_POST['concepto'];
+    $asig = $_POST['asig'];
 
 
     $check_query = "SELECT * FROM recaudaciones WHERE rec_id = $asig";

@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notacredito_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notacreditoventaslistado.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notacreditoventas_agregar.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notacreditoventas_abm.php</file>
-            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_efectivo_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/compra_impresion.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremisionventa_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedidocliente_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedidolistado.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/ventas_impresion.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/venta_agregar.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/informes_movimientos/ventas_informes.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedidocliente_listado.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedidocliente_impresion.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/pedido_impresion.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/depositobancario_abm.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/cobranza_listado.php</file>
+            <file>file:/C:/xampp/htdocs/tallercompras/movimientos/notaremisionventa_abm.php</file>
         </group>
     </open-files>
 </project-private>

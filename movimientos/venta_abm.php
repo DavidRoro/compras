@@ -141,7 +141,7 @@ if (!empty($_GET['delete'])) {
 if (!empty($_GET['imprimir'])) {
     $f1 = $_GET['vcod'];
 //    echo $f1;
-    $update = db_query("update ventas set ventas_estado='GENERADO' where idventas=$f1");
+    $update = db_query("update ventas set ventas_estado='GENERADO' where idventa=$f1");
     if ($update) {
         echo "<script>location.href='ventas_impresion.php?vcod=$f1'</script>";
     }
