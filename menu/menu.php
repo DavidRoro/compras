@@ -215,6 +215,10 @@ mysqli_query($con, $sql);
                                 <a class="collapse-item" target="myFrame" href="../movimientos/apertura_agregar.php">
 
                                     Apertura Y Cierre de Caja</a>
+                                
+                                 <a class="collapse-item" target="myFrame" href="../movimientos/arqueo_agregar.php">
+
+                                    Arqueo</a>
                                 <a class="collapse-item" target="myFrame" href="../movimientos/pedidocliente_listado.php">
 
                                     Pedido de Clientes</a>
@@ -271,12 +275,12 @@ mysqli_query($con, $sql);
 
                                     Deposito Bancario</a>
 
-                                <a class="collapse-item" href="../movimientos/debitoscreditos_listado.php" target="myFrame">
+                                <a class="collapse-item" href="../movimientos/debitoscreditos_agregar.php" target="myFrame">
 
                                     Debitos/Creditos</a>
 
 
-                                <a class="collapse-item" target="myFrame" href="../movimientos/conciliacion">
+                                <a class="collapse-item" target="myFrame" href="../movimientos/conciliacion_agregar.php">
 
                                     Conciliación</a>
 

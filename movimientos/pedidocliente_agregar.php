@@ -278,7 +278,7 @@ if (mysqli_num_rows($consulta) > 0) {
                                     <div class="modal-footer"> 
                                         <button class="btn btn-warning" type="text" onclick="location.href = 'pedidocliente_listado.php'"><span class="fa fa-window-restore"></span> VOLVER</button> 
                                         <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
-                                        <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'pedido_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
+                                        <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'pedidocliente_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
                                         <!--<button type="submit" name="agregar" id="btn-submit" class="btn btn-success"><span class="fa fa-check"></span> REGISTRAR</button>--> 
                                         <!--<input type="submit" name="agregar" id="btn-submit" class="btn btn-success glyphicon glyphicon-check" value="REGISTRAR">-->
                                         <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-primary" onclick="retornar();"><span class="fa fa-check"></span> REGISTRAR</button>

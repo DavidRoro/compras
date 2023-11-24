@@ -2,18 +2,6 @@
 <?php
 require('../clases/conexion.php');
 require('../sesiones.php');
-//$conteo = db_query("SELECT IFNULL(MAX(ped_id),0) as conteo FROM compras.pedido");
-//$pedido = mysqli_fetch_array($conteo);
-//$idped = $pedido[0];
-$consulta = db_query("SELECT * FROM depositobancario where dep_estado='PENDIENTE' and usu_id=$idUsu");
-if (mysqli_num_rows($consulta) > 0) {
-    $tomar = mysqli_fetch_array($consulta);
-    $idped = $tomar[0];
-//    echo "ya tenemos el ultimo ID que es:" . $ultID;
-} else {
-    $idped = 0;
-//    $sucur = "";
-}
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +70,29 @@ if (mysqli_num_rows($consulta) > 0) {
 
 
         </style>
+
+        <script>
+            function mostrarCampos() {
+                var cmbtipo = document.getElementById('cmbtipo');
+                var txtdebe = document.getElementById('txtdebe');
+                var txthaber = document.getElementById('txthaber');
+                var debe = document.getElementById('debe');
+                var haber = document.getElementById('haber');
+
+                if (cmbtipo.value === 'DEBE') {
+                    txtdebe.style.display = 'block';
+                    txthaber.style.display = 'none';
+                    debe.value = 0;
+                } else if (cmbtipo.value === 'HABER') {
+                    txtdebe.style.display = 'none';
+                    haber.value = 0;
+                    txthaber.style.display = 'block';
+                } else {
+                    txtdebe.style.display = 'none';
+                    txthaber.style.display = 'none';
+                }
+            }
+        </script>
     </head>
 
     <body id="page-top" class="bg-gray-100" onLoad="getTime()">
@@ -96,7 +107,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form action="depositobancario_abm.php" enctype="multipart/form-data" method="POST" role="form">
+                <form action="conciliacion_abm.php" enctype="multipart/form-data" method="POST" role="form">
                     <!-- Page Heading -->
                     <!--<h1 class="h3 mb-1 text-gray-800">DATOS DE PEDIDO</h1>-->
                     <!--<p class="mb-4">Bootstrap's default utility classes can be found on the official <a href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities below were created to extend this theme past the default utility classes built into Bootstrap's framework.</p>-->
@@ -109,7 +120,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span>Deposito Bancario</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span>Datos de Arqueo</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -144,41 +155,56 @@ if (mysqli_num_rows($consulta) > 0) {
                                         </div>  
                                     </div>
 
-
-
                                     <div class="form-group">
                                         <div class="col-lg-9">
-                                            <label><span><i class=""></i>Ingrese Monto:</span></label>
+                                            <label><span><i class=""></i>Ingrese Concepto:</span></label>
 
-                                            <input type="number" id="txtdescri" name="monto" class="form-control">
+                                            <input type="text" id="txtdescri" name="concepto" class="form-control" required="">
                                         </div>  
                                     </div>
 
-
-
-
                                     <div class="form-group">
                                         <div class="col-lg-8">
-                                            <label><span><i class=""></i>Metodo de Deposito:</span></label>
+                                            <label><span><i class=""></i>Tipo:</span></label>
 
-                                            <select class="js-example-basic-single form-control" required="" name="combometodo">
+                                            <select class="js-example-basic-single form-control" required="" id="cmbtipo" name="cmbtipo" onchange="mostrarCampos()">
                                                 <option value="">Seleccione:</option>
-                                                <option value="EFECTIVO">EFECTIVO</option>
-                                                <option value="CHEQUE">CHEQUE</option>
+                                                <option value="DEBE">DEBE</option>
+                                                <option value="HABER">HABER</option>
 
                                             </select>
 
                                         </div>
                                     </div>
 
+                                    <!--                                    <div class="form-group" >
+                                                                            <div class="col-lg-9" >
+                                    
+                                                                                <input type="number" name="debe" id="txtdebe" placeholder="DEBE"  class="form-control">
+                                                                            </div>
+                                                                        </div>-->
+
+                                    <div class="form-group" id="txtdebe" style="display: none;">
+                                        <div class="col-lg-9" >
+                                            <label for="debe">DEBE:</label>
+                                            <input type="number" id="debe" name="debe" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="txthaber" style="display: none;">
+                                        <div class="col-lg-9" >
+                                            <label for="haber">HABER:</label>
+                                            <input type="number" id="haber" name="haber" class="form-control">
+                                        </div>
+                                    </div>
 
 
-
-
-
-
-
-
+                                    <!--                                    <div class="form-group" >
+                                                                            <div class="col-lg-9" >
+                                    
+                                                                                <input type="number" placeholder="HABER" id="txthaber" name="haber"  class="form-control">
+                                                                            </div>
+                                                                        </div>-->
 
                                 </div>
                             </div>
@@ -190,7 +216,7 @@ if (mysqli_num_rows($consulta) > 0) {
 
                             <div class="card position-relative ">
                                 <div class="card-header py-3 bg-info">
-                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> Listado de Depositos</h6>
+                                    <h6 class="m-0 font-weight-bold text-white"><span class="fa fa-archive"></span> Arqueo</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -208,28 +234,29 @@ if (mysqli_num_rows($consulta) > 0) {
                                                 <table class="table table-striped table-bordered dt-responsive nowrap" id="carrito">
                                                     <thead>
                                                         <tr>
-                                                                <th><div align="center">Acción</div></th>
+                                                            <th><div align="center">Acción</div></th>
                                                             <th><div align="center">Codigo</div></th>
-                                                            <th><div align="center">Fecha de Deposito</div></th>
-                                                            <th><div align="center">Monto a Depositar</div></th>
-
-                                                            <th><div align="center">Metodo</div></th>
-
-
+                                                            <th><div align="center">Fecha</div></th>
+                                                            <th><div align="center">Concepto</div></th>
+                                                            <th><div align="center">DEBE</div></th>
+                                                            <th><div align="center">HABER</div></th>
+                                                            <th><div align="center">SALDO</div></th>
                                                             <th><div align="center">Estado</div></th>
 
                                                         </tr></thead>
                                                     <?php
-                                                    $consul = db_query("select * from depositobancario");
+                                                    $consul = db_query("select * from conciliacion");
                                                     ?>
                                                     <tbody>
                                                         <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                             <tr>
-                                                                 <td><div align="center"><a href="depositobancario_abm.php?imprimir=imprimir&vcod=<?php echo $mostrardatos[0] ?>"><i class="fa fa-save"></i></a></div></td>
+                                                                <td><div align="center"><a href="conciliacion_abm.php?borrar=borrar&vcod=<?php echo $mostrardatos[0] ?>"><i class="fa fa-trash"></i></a></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[0] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[2] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[3] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[4] ?></div></td>
+                                                                <td><div align="center"><?php echo $mostrardatos[5] ?></div></td>
+                                                                <td><div align="center"><?php echo $mostrardatos[6] ?></div></td>
                                                                 <td><div align="center"><?php echo $mostrardatos[1] ?></div></td> 
 
                                                             </tr>
@@ -330,5 +357,9 @@ if (mysqli_num_rows($consulta) > 0) {
                     </body>
 
                     </html>
+
+
+
+
 
 

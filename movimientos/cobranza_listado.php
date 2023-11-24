@@ -27,7 +27,7 @@
         <?php
         require ('../clases/conexion.php');
         include '../sesiones.php';
-        $datos = db_query("select * from vs_cobranzas where cob_estado='GENERADO' OR cob_estado='PENDIENTE' AND suc_id=$idSuc");
+        $datos = db_query("select * from vs_cobranzas where cob_estado='PAGADO' OR cob_estado='PENDIENTE' AND suc_id=$idSuc");
         ?>
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -71,7 +71,7 @@
                                         <tr>
                                             <td><?php echo $fila[0]; ?></td>
                                             <td><?php echo date_format($date, 'd-m-Y'); ?></td>
-                                            <?php if ($fila[4] == 'GENERADO') { ?>
+                                            <?php if ($fila[4] == 'Pagado') { ?>
                                                 <td class="text-success"><?php echo $fila[4]; ?></td>
                                             <?php } else { ?>
                                                 <td class="text-danger"><?php echo $fila[4]; ?></td>

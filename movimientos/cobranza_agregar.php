@@ -329,11 +329,19 @@ if (mysqli_num_rows($consulta) > 0) {
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label><span><i class=""></i>Monto:</span></label>
+                                                    <label><span><i class=""></i>Monto A cobrar:</span></label>
 
-                                                    <input type="number" name="txtcantidad" value="" id="txtcantidad" onkeyup="validaciones();" id="" class="form-control">    
+                                                    <input type="number" name="txtcantidad" value="" id="txtcantidad" onkeyup="validaciones();" id="" class="form-control" readonly="">    
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label><span><i class=""></i>Efectivo Recibido:</span></label>
+
+                                                    <input type="number" name="txtrecibido" value="" id="txtrecibido" onkeyup="validaciones();" id="" class="form-control" required="">    
                                                 </div>
                                             </div>
 
@@ -352,10 +360,11 @@ if (mysqli_num_rows($consulta) > 0) {
                                                                     <th><div align="center">Acción</div></th>
                                                                     <th><div align="center">Codigo</div></th>
                                                                     <th><div align="center">Forma de Cobro</div></th>
-                                                                    <th><div align="center">Monto a Pagar</div></th>
                                                                     <th><div align="center">Monto a Cobrar</div></th>
-                                                                    <th><div align="center">Vuelto</div></th>
-                                                                    <
+                                                                    <th><div align="center">Monto Recibido</div></th>
+                                                                    <!--<th><div align="center">Vuelto</div></th>-->
+                                                                    <th><div align="center">Deuda pendiente</div></th>
+                                                                    
 
                                                                 </tr></thead>
                                                             <?php
@@ -365,14 +374,15 @@ if (mysqli_num_rows($consulta) > 0) {
                                                             <tbody>
                                                                 <?php while ($mostrardatos = mysqli_fetch_array($consul)) { ?>
                                                                     <tr>
-                                                                        <td><div align="center"><a href="cobranza_abm.php?delete=delete&id=<?php echo $mostrardatos[1] . "&id2=$mostrardatos[0]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
+                                                                        <td><div align="center"><a href="cobranza_abm.php?delete=delete&id=<?php echo $mostrardatos[0] . "&id2=$mostrardatos[1]" ?>"><i class="entypo-trash"></i>Borrar</a></div></td>
                                                                         <!--<td><div align="center"><?php //echo $mostrardatos[1]                                       ?></div></td>-->
                                                                         <td><div align="center"><?php echo $mostrardatos[1] ?></div></td>
                                                                         <td><div align="center"><?php echo $mostrardatos[2] ?></div></td> 
+                                                                                                                                                <td><div align="center"><?php echo number_format($mostrardatos[4], 0, ',', '.') ?></div></td> 
                                                                         <td><div align="center"><?php echo number_format($mostrardatos[3], 0, ',', '.') ?></div></td> 
-                                                                        <td><div align="center"><?php echo $mostrardatos[4] ?></div></td> 
-                                                                       
-                                                                        <td><div align="center"><?php echo $mostrardatos[5] ?></div></td> 
+                                                                        <!--<td><div align="center"><?php //echo number_format($mostrardatos[5], 0, ',', '.') ?></div></td>-->
+ 
+                                                                        <td><div align="center"><?php echo number_format($mostrardatos[6], 0, ',', '.') ?></div></td> 
                                                                        
                                                                       
                                                                         
@@ -400,12 +410,12 @@ if (mysqli_num_rows($consulta) > 0) {
 
                                                 <div align="right"><button type="submit" name="agregar" value="agregar" data_toggle="modal" data_target="#registra" id="AgregaProductoVentas" class="btn btn-success" onclick="retornar();"> AGREGAR</button>
                                                     
-                                                    <input type="submit" name="cheque" id="btn-cheque" class="btn btn-primary glyphicon glyphicon-check" value="CHEQUE">
+<!--                                                    <input type="submit" name="cheque" id="btn-cheque" class="btn btn-primary glyphicon glyphicon-check" value="CHEQUE">
                                                     <input type="submit" name="tarjeta" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="TARJETA">
-                                                    <input type="submit" name="efectivo" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="EFECTIVO">
+                                                    <input type="submit" name="efectivo" id="btn-tarjetas" class="btn btn-warning glyphicon glyphicon-check" value="EFECTIVO">-->
                                                             
                                                     <button class="btn btn-danger" type="reset"><span class="fa fa-times"></span> CANCELAR</button> 
-                                                    <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'compra_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
+                                                    <button type="button" name="imprimir" id="btn-submit" class="btn btn-primary" onclick="location.href = 'cobranza_abm.php?imprimir=imprimir&vcod=<?php echo $idped; ?>'"><span class="fa fa-save"></span> IMPRIMIR</button> 
                                                 </div>
                                         </form>
                                     </div>

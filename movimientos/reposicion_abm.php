@@ -23,12 +23,6 @@ if (!empty($_POST['agregar'])) {
    
 }
 
-
-
-
-
-
-
 if (!empty($_GET['borrar'])) {
     $cancel = db_query("update reposicion set reposicion_estado='ANULADO' where idreposicion=$_GET[vcod]");
     if ($cancel) {
